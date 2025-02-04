@@ -36,6 +36,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
+import { Link } from "react-router-dom";
 const EditCategory = () => {
   return (
     <div>
@@ -90,7 +91,9 @@ const EditCategory = () => {
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>
-                    <User2 /> Profile
+                  <Link to="/profile">
+                  <User2 /> Profile
+                  </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <KeyRound /> Password

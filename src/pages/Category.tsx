@@ -27,6 +27,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import { Link } from "react-router-dom";
 
 
 const categories = [
@@ -89,7 +90,9 @@ export default function Navbar() {
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem><User2 /> Profile</DropdownMenuItem>
+                <Link to="/profile">
+                  <User2 /> Profile
+                  </Link>
                 <DropdownMenuItem><KeyRound /> Password</DropdownMenuItem>
                 <DropdownMenuItem><LogOutIcon /> Logout</DropdownMenuItem>
               </DropdownMenuContent>
@@ -105,19 +108,19 @@ export default function Navbar() {
               </div>
           </div>
         </header>
-        <div className="flex items-center justify-around p-6 ml-2 mr-2  mt-3  bg-zinc-900 rounded-xl">
+        <div className="flex items-center justify-around p-6 ml-2 mr-2  mt-3  dark:bg-zinc-900 bg-white shadow-lg rounded-xl">
       {categories.map((category, index) => (
-        <Card key={index} className="w-60 bg-zinc-800 text-center p-4 rounded-xl">
+        <Card key={index} className="w-60 dark:bg-zinc-800 shadow-xl dark:text-white text-center p-4 rounded-xl">
           <CardContent className={`h-24 flex items-center pt-4 justify-center ${category.bgColor} rounded-lg`}>
             <img src={category.img} alt=""  className="w-20 h-20 "/>
           </CardContent>
-          <p className="mt-4 text-white font-medium">{category.name}</p>
+          <p className="mt-4  font-medium">{category.name}</p>
         </Card>
       ))}
     </div>
     <div>
       
-    <div className="p-6 text-white min-h-screen">
+    <div className="p-6 dark:text-white text-black min-h-screen">
       <div className="flex justify-between mb-4">
         <h2 className="text-xl font-bold">All Categories List</h2>
  <div className="flex gap-2">
@@ -142,7 +145,7 @@ export default function Navbar() {
   <thead>
     <tr>
       <th className="p-3 border border-gray-700">
-        <Checkbox />
+
       </th>
       <th className="p-3 border border-gray-700">Img</th>
       <th className="p-3 border border-gray-700">Categories</th>

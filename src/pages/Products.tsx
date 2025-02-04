@@ -44,6 +44,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Link } from "react-router-dom";
 
 export default function Products() {
   return (
@@ -83,7 +84,9 @@ export default function Products() {
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
+                <Link to="/profile">
                   <User2 /> Profile
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <KeyRound /> Password
@@ -102,10 +105,10 @@ export default function Products() {
             </div>
           </div>
         </header>
-        <div className="dark:bg-zinc-900  text-white min-h-screen p-6">
+        <div className="dark:bg-zinc-900  bg-white dark:text-white text-black min-h-screen p-6">
           <div className="flex justify-between items-center mb-4">
             <div className="relative">
-              <Input placeholder="Search ..." className="pl-10 bg-zinc-800" />
+              <Input placeholder="Search ..." className="pl-10 dark:bg-zinc-800 bg-white shadow-lg" />
               <Search
                 className="absolute left-3 top-2 text-gray-400"
                 size={20}
@@ -116,7 +119,7 @@ export default function Products() {
             </Button>
           </div>
           <div className="flex gap-4">
-            <aside className="w-1/4 bg-zinc-800 p-4 rounded-xl">
+            <aside className="w-1/4 dark:bg-zinc-800 bg-white shadow-lg dark:text-white text-black p-4 rounded-xl">
               <Accordion type="single" collapsible>
                 <AccordionItem value="item-1">
                   <AccordionTrigger>Categories</AccordionTrigger>
@@ -189,7 +192,7 @@ export default function Products() {
             </aside>
             <main className="w-3/4 grid grid-cols-3 gap-4">
               {products.map((product, index) => (
-                <Card key={index} className="bg-zinc-800 rounded-xl">
+                <Card key={index} className="dark:bg-zinc-800  bg-white shadow-lg rounded-xl">
                   <CardContent className="p-4">
                     <img
                       src={product.img}

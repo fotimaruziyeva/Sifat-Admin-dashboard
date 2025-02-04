@@ -32,6 +32,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../components/ui/dropdown-menu";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
@@ -84,7 +85,10 @@ export default function Navbar() {
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
+                  <Link to="/profile">
                   <User2 /> Profile
+                  </Link>
+                 
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <KeyRound /> Password

@@ -78,15 +78,15 @@ const data = {
         },
         {
           title: "Grid",
-          url: "#",
+          url: "/products",
         },
         {
           title: "Edit",
-          url: "#",
+          url: "/product-edit",
         },
         {
             title: "Create",
-            url: "#",
+            url: "/product-create",
           },
       ],
     },
@@ -135,7 +135,7 @@ const data = {
         items: [
           {
             title: "List",
-            url: "#",
+            url: "/orders",
           },
           {
             title: "Deatils",

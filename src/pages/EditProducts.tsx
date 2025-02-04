@@ -43,14 +43,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { Link } from "react-router-dom";
 
-
-
-const CreateProducts = () => {
-
+const EditProducts = () => {
   return (
     <div>
-        <SidebarProvider className="w-screen">
+      <SidebarProvider className="w-screen">
         <AppSidebar />
         <SidebarInset>
           <header className="flex h-16 items-center justify-between px-4 border-b ">
@@ -101,7 +99,9 @@ const CreateProducts = () => {
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>
-                    <User2 /> Profile
+                  <Link to="/profile">
+                  <User2 /> Profile
+                  </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <KeyRound /> Password
@@ -178,8 +178,7 @@ const CreateProducts = () => {
                   </h4>
                   <div className="space-y-4 dark:text-white text-black">
                     <div className="grid grid-cols-2 gap-4 pt-3">
-                      
-                      <Input placeholder="Product Name" />
+                      <Input placeholder="Men Black Slim Fit T-shirt (Fashion)" />
                       <Select>
                         <SelectTrigger>
                           <SelectValue placeholder="Choose a category" />
@@ -276,8 +275,8 @@ const CreateProducts = () => {
                     </div>
 
                     <div className="flex gap-4 justify-end pt-3 ">
-                      <Button >Create Product </Button>
-                      <Button className="bg-orange-400">Cancel</Button>
+                      <Button className="bg-green-600">Reset</Button>
+                      <Button>Save Product</Button>
                     </div>
                   </div>
                 </div>
@@ -290,4 +289,4 @@ const CreateProducts = () => {
   );
 };
 
-export default CreateProducts;
+export default EditProducts;
