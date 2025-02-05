@@ -10,7 +10,6 @@ import {
 	KeyRound,
 	LogOutIcon,
 	Package,
-	Plus,
 	Search,
 	Settings,
 	Timer,
@@ -219,10 +218,13 @@ export default function Navbar() {
 					<div className='p-5 rounded-sm border border-solid border-[#00000012]  flex flex-col gap-5'>
 						<div className='flex justify-between items-center gap-4'>
 							<h1 className='text-2xl font-semibold'>Recent Orders</h1>
-							<Button>
+							<div>
+							<Button className='flex '>
 								<Link to={'/orders'}>
-								<Plus/>Create Orders
+								Create Orders
 								</Link> </Button>
+							</div>
+							
 						</div>
 						<div className='h-full'>
   <table className='w-full border border-gray-700 text-center border-collapse'>
