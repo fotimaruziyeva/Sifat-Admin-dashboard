@@ -229,7 +229,7 @@ export default function Navbar() {
 						<div className='h-full'>
   <table className='w-full border border-gray-700 text-center border-collapse'>
     <thead>
-      <tr className='border border-gray-700 bg-gray-200'>
+      <tr className='border border-gray-700'>
         <th className='p-2 border border-gray-700'>Order Id</th>
         <th className='p-2 border border-gray-700'>Date</th>
         <th className='p-2 border border-gray-700'>Product</th>
