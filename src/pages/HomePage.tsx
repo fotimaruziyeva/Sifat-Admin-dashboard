@@ -219,42 +219,46 @@ export default function Navbar() {
 					<div className='p-5 rounded-sm border border-solid border-[#00000012]  flex flex-col gap-5'>
 						<div className='flex justify-between items-center gap-4'>
 							<h1 className='text-2xl font-semibold'>Recent Orders</h1>
-							<Button> <Plus/>Create Orders</Button>
+							<Button>
+								<Link to={'/orders'}>
+								<Plus/>Create Orders
+								</Link> </Button>
 						</div>
 						<div className='h-full'>
-							<table className='w-full border-collapse border text-center'>
-								<thead>
-									<tr className='border border-gray-700'>
-									<th className='p-2 border-gray-700'> Order  Id </th>
-									<th className='p-2 border-gray-700'>Date</th>
-									<th className='p-2 border-gray-700'>Product</th>
-									<th className='p-2 border-gray-700'>Customer Name</th>
-									<th className='p-2 border-gray-700'>Email ID</th>
-									<th className='p-2 border-gray-700'>Phone No.</th>
-									<th className='p-2 border-gray-700'>Address</th>
-									<th className='p-2 border-gray-700'>Payment Type</th>
-									<th className='p-2 border-gray-700'>Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									{recentOrder.map((order)=>(
-										<tr key={order.id} className='p-3 border border-gray-700'>
-											<td>{order.id}</td>
-											<td>{order.date}</td>
-											<td>
-												<img src={order.product} alt=""  className='w-16 h-16'/>
-											</td>
-											<td>{order.customerName}</td>
-											<td>{order.emailId}</td>
-											<td>{order.phoneNo}</td>
-											<td>{order.address}</td>
-											<td>{order.paymentType}</td>
-											<td>{order.status}</td>
-										</tr>
-									))}
-								</tbody>
-							</table>
-						</div>
+  <table className='w-full border border-gray-700 text-center border-collapse'>
+    <thead>
+      <tr className='border border-gray-700 bg-gray-200'>
+        <th className='p-2 border border-gray-700'>Order Id</th>
+        <th className='p-2 border border-gray-700'>Date</th>
+        <th className='p-2 border border-gray-700'>Product</th>
+        <th className='p-2 border border-gray-700'>Customer Name</th>
+        <th className='p-2 border border-gray-700'>Email ID</th>
+        <th className='p-2 border border-gray-700'>Phone No.</th>
+        <th className='p-2 border border-gray-700'>Address</th>
+        <th className='p-2 border border-gray-700'>Payment Type</th>
+        <th className='p-2 border border-gray-700'>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {recentOrder.map((order) => (
+        <tr key={order.id} className='border border-gray-700'>
+          <td className='p-2 border border-gray-700'>{order.id}</td>
+          <td className='p-2 border border-gray-700'>{order.date}</td>
+          <td className='p-2 border border-gray-700'>
+            <img src={order.product} alt="" className='w-16 h-16 mx-auto'/>
+          </td>
+          <td className='p-2 border border-gray-700'>{order.customerName}</td>
+          <td className='p-2 border border-gray-700'>{order.emailId}</td>
+          <td className='p-2 border border-gray-700'>{order.phoneNo}</td>
+          <td className='p-2 border border-gray-700'>{order.address}</td>
+          <td className='p-2 border border-gray-700'>{order.paymentType}</td>
+          <td className='p-2 border border-gray-700'>{order.status}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
 					</div>
 				</div>
 			</SidebarInset>
