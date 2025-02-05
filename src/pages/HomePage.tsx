@@ -58,7 +58,7 @@ import { Button } from '@/components/ui/button'
 
 export default function Navbar() {
 	return (
-		<SidebarProvider className=' w-screen'>
+		<SidebarProvider className=' w-screen dark:text-white text-black dark:bg-black bg-white shadow-lg'>
 			<AppSidebar />
 			<SidebarInset>
 				<header className='flex h-16 items-center justify-between px-4 border-b'>
