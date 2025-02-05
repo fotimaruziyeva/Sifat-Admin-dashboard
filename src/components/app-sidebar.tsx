@@ -62,8 +62,15 @@ const data = {
   navMain: [
     {
         title: 'Dashboard',
-        url: '#',
+        url: '/',
         icon: LayoutDashboard,
+        items: [
+        
+          {
+            title: "HOME",
+            url: "/",
+          }
+        ]
     },
     // Products
     { 
@@ -72,10 +79,7 @@ const data = {
       icon: Shirt,
       isActive: false,
       items: [
-        {
-          title: "List",
-          url: "#",
-        },
+        
         {
           title: "Grid",
           url: "/products",
@@ -115,16 +119,7 @@ const data = {
       title: "Inventory",
       url: "#",
       icon: BookPlus,
-      items: [
-        {
-          title: "Warehouse",
-          url: "#",
-        },
-        {
-          title: "Received Orders",
-          url: "#",
-        },
-      ],
+  
     },
     // Orders
     { 
@@ -136,19 +131,7 @@ const data = {
           {
             title: "List",
             url: "/orders",
-          },
-          {
-            title: "Deatils",
-            url: "#",
-          },
-          {
-            title: "Cart",
-            url: "#",
-          },
-          {
-              title: "Check Out",
-              url: "#",
-            },
+          }
         ],
       },
     //   Purchases
@@ -157,20 +140,7 @@ const data = {
         url: "#",
         icon: ArchiveRestore,
         isActive: false,
-        items: [
-          {
-            title: "List",
-            url: "#",
-          },
-          {
-            title: "Order",
-            url: "#",
-          },
-          {
-            title: "Return",
-            url: "#",
-          },
-        ],
+       
       },
     //   Attributes
       { 
@@ -178,20 +148,8 @@ const data = {
         url: "#",
         icon: PartyPopperIcon,
         isActive: false,
-        items: [
-          {
-            title: "List",
-            url: "#",
-          },
-          {
-            title: "Edit",
-            url: "#",
-          },
-          {
-            title: "Create",
-            url: "#",
-          },
-        ],
+        
+      
       },
     //   Invoices
       { 
@@ -199,20 +157,7 @@ const data = {
         url: "#",
         icon: File,
         isActive: false,
-        items: [
-          {
-            title: "List",
-            url: "#",
-          },
-          {
-            title: "Details",
-            url: "#",
-          },
-          {
-            title: "Create",
-            url: "#",
-          },
-        ],
+       
       },
     //   Customers
       { 
@@ -220,20 +165,7 @@ const data = {
         url: "#",
         icon: Store,
         isActive: false,
-        items: [
-          {
-            title: "List",
-            url: "#",
-          },
-          {
-            title: "Details",
-            url: "#",
-          },
-          {
-            title: "Create",
-            url: "#",
-          },
-        ],
+       
       },
     //   Sellers
     { 
@@ -241,40 +173,14 @@ const data = {
         url: "#",
         icon: SquareTerminal,
         isActive: false,
-        items: [
-          {
-            title: "List",
-            url: "#",
-          },
-          {
-            title: "Details",
-            url: "#",
-          },
-          {
-            title: "Edit",
-            url: "#",
-          },
-          {
-              title: "Create",
-              url: "#",
-            },
-        ],
+       
       },
     //   Coupons
       { 
         title: "Coupons",
         url: "#",
         icon: Receipt,
-        items: [
-          {
-            title: "List",
-            url: "#",
-          },
-          {
-            title: "Add",
-            url: "#",
-          },
-        ],
+       
       },
   ],
   projects: [

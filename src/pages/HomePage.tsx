@@ -10,6 +10,7 @@ import {
 	KeyRound,
 	LogOutIcon,
 	Package,
+	Plus,
 	Search,
 	Settings,
 	Timer,
@@ -52,51 +53,9 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select'
+import { data, recentOrder } from '@/constants'
+import { Button } from '@/components/ui/button'
 
-const data = [
-	{
-		name: 'Page A',
-		uv: 4000,
-		pv: 2400,
-		amt: 2400,
-	},
-	{
-		name: 'Page B',
-		uv: 3000,
-		pv: 1398,
-		amt: 2210,
-	},
-	{
-		name: 'Page C',
-		uv: 2000,
-		pv: 9800,
-		amt: 2290,
-	},
-	{
-		name: 'Page D',
-		uv: 2780,
-		pv: 3908,
-		amt: 2000,
-	},
-	{
-		name: 'Page E',
-		uv: 1890,
-		pv: 4800,
-		amt: 2181,
-	},
-	{
-		name: 'Page F',
-		uv: 2390,
-		pv: 3800,
-		amt: 2500,
-	},
-	{
-		name: 'Page G',
-		uv: 3490,
-		pv: 4300,
-		amt: 2100,
-	},
-]
 
 export default function Navbar() {
 	return (
@@ -174,40 +133,40 @@ export default function Navbar() {
 				</header>
 				<div className='flex flex-col  gap-4 mt-10 px-5'>
 					<div className='grid grid-cols-5 gap-10'>
-						<div className='flex flex-col gap-2 relative border border-solid border-[#00000012] p-5 rounded-sm bg-slate-300'>
+						<div className='flex flex-col gap-2 relative border border-solid border-[#00000012] p-5 rounded-sm bg-slate-300 dark:text-black'>
 							<span className='absolute top-3 right-3 text-black'>
 								<Package size={14} />
 							</span>
 							<span className='text-2xl font-semibold'>4000</span>
-							<p className='text-muted-foreground'>Total Products</p>
+							<p className='text-muted-foreground dark:text-black'>Total Products</p>
 						</div>
-						<div className='flex flex-col gap-2 relative border border-solid border-[#00000012] p-5 rounded-sm bg-slate-300'>
+						<div className='flex flex-col gap-2 relative border border-solid border-[#00000012] p-5 rounded-sm bg-slate-300 dark:text-black'>
 							<span className='absolute top-3 right-3 text-black'>
 								<Package size={14} />
 							</span>
 							<span className='text-2xl font-semibold'>4000</span>
-							<p className='text-muted-foreground'>Total Products</p>
+							<p className='text-muted-foreground dark:text-black'>Total Products</p>
 						</div>
-						<div className='flex flex-col gap-2 relative border border-solid border-[#00000012] p-5 rounded-sm bg-slate-300'>
+						<div className='flex flex-col gap-2 relative border border-solid border-[#00000012] p-5 rounded-sm bg-slate-300 dark:text-black'>
 							<span className='absolute top-3 right-3 text-black'>
 								<Package size={14} />
 							</span>
 							<span className='text-2xl font-semibold'>4000</span>
-							<p className='text-muted-foreground'>Total Products</p>
+							<p className='text-muted-foreground dark:text-black'>Total Products</p>
 						</div>
-						<div className='flex flex-col gap-2 relative border border-solid border-[#00000012] p-5 rounded-sm bg-slate-300'>
+						<div className='flex flex-col gap-2 relative border border-solid border-[#00000012] p-5 rounded-sm bg-slate-300 dark:text-black'>
 							<span className='absolute top-3 right-3 text-black'>
 								<Package size={14} />
 							</span>
 							<span className='text-2xl font-semibold'>4000</span>
-							<p className='text-muted-foreground'>Total Products</p>
+							<p className='text-muted-foreground dark:text-black'>Total Products</p>
 						</div>
-						<div className='flex flex-col gap-2 relative border border-solid border-[#00000012] p-5 rounded-sm bg-slate-300'>
+						<div className='flex flex-col gap-2 relative border border-solid border-[#00000012] p-5 rounded-sm bg-slate-300 dark:text-black'>
 							<span className='absolute top-3 right-3 text-black'>
 								<Package size={14} />
 							</span>
 							<span className='text-2xl font-semibold'>4000</span>
-							<p className='text-muted-foreground'>Total Products</p>
+							<p className='text-muted-foreground dark:text-black'>Total Products</p>
 						</div>
 					</div>
 					<div className='p-5 rounded-sm border border-solid border-[#00000012] h-[500px] flex flex-col gap-5'>
@@ -260,8 +219,42 @@ export default function Navbar() {
 					<div className='p-5 rounded-sm border border-solid border-[#00000012]  flex flex-col gap-5'>
 						<div className='flex justify-between items-center gap-4'>
 							<h1 className='text-2xl font-semibold'>Recent Orders</h1>
+							<Button> <Plus/>Create Orders</Button>
 						</div>
-						<div className='h-full'>//orders table data</div>
+						<div className='h-full'>
+							<table className='w-full border-collapse border text-center'>
+								<thead>
+									<tr className='border border-gray-700'>
+									<th className='p-2 border-gray-700'> Order  Id </th>
+									<th className='p-2 border-gray-700'>Date</th>
+									<th className='p-2 border-gray-700'>Product</th>
+									<th className='p-2 border-gray-700'>Customer Name</th>
+									<th className='p-2 border-gray-700'>Email ID</th>
+									<th className='p-2 border-gray-700'>Phone No.</th>
+									<th className='p-2 border-gray-700'>Address</th>
+									<th className='p-2 border-gray-700'>Payment Type</th>
+									<th className='p-2 border-gray-700'>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									{recentOrder.map((order)=>(
+										<tr key={order.id} className='p-3 border border-gray-700'>
+											<td>{order.id}</td>
+											<td>{order.date}</td>
+											<td>
+												<img src={order.product} alt=""  className='w-16 h-16'/>
+											</td>
+											<td>{order.customerName}</td>
+											<td>{order.emailId}</td>
+											<td>{order.phoneNo}</td>
+											<td>{order.address}</td>
+											<td>{order.paymentType}</td>
+											<td>{order.status}</td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</SidebarInset>

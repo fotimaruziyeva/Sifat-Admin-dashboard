@@ -135,7 +135,9 @@ const CreateCategory = () => {
                 </div>
                 <div className="mt-4 flex gap-2">
                   <Button className="px-10 py-4 border rounded-lg dark:text-black text-white">
-                    Create Category
+                   <Link to={'/createcategory'}>
+                   Create Category
+                   </Link>
                   </Button>
                   <Button className="px-10 py-2 bg-orange-500 dark:text-black text-white rounded-lg">
                     Cancel
