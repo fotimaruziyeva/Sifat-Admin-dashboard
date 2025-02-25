@@ -30,8 +30,8 @@ import {
   Timer,
   User2,
 } from "lucide-react";
-import image from "../assets/image.png";
-import images from "../assets/clothes.png";
+import image from "../../assets/image.png";
+import images from "../../assets/clothes.png";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";

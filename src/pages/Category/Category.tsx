@@ -4,9 +4,9 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { ModeToggle } from "../components/mode-toggle";
+import { ModeToggle } from "../../components/mode-toggle";
 import { Bell,  Edit2, Eye, Heart, KeyRound, LogOutIcon, Search, Settings, Timer, Trash2, User2 } from "lucide-react";
-import { Input } from "../components/ui/input";
+import { Input } from "../../components/ui/input";
 import {
   Sheet,
   SheetContent,
@@ -14,13 +14,13 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "../components/ui/sheet";
-import image from "../assets/image.png";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../components/ui/dropdown-menu";
-import clothes from "../assets/clothes.png";
-import image2 from "../assets/2..png";
-import image3 from "../assets/3.png";
-import image4 from "../assets/4.png";
+} from "../../components/ui/sheet";
+import image from "../../assets/image.png";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../../components/ui/dropdown-menu";
+import clothes from "../../assets/clothes.png";
+import image2 from "../../assets/2..png";
+import image3 from "../../assets/3.png";
+import image4 from "../../assets/4.png";
 import { Card, CardContent } from "@/components/ui/card";
 import { category } from "@/constants";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -46,7 +46,7 @@ const categories = [
         bgColor: "bg-blue-900" 
     },
   ];
-export default function Navbar() {
+export default function Category() {
   return (
     <SidebarProvider className="w-screen">
       <AppSidebar />

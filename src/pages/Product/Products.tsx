@@ -4,7 +4,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { ModeToggle } from "../components/mode-toggle";
+import { ModeToggle } from "../../components/mode-toggle";
 import {
   Bell,
   Edit2,
@@ -15,7 +15,7 @@ import {
   Trash2,
   User2,
 } from "lucide-react";
-import { Input } from "../components/ui/input";
+import { Input } from "../../components/ui/input";
 import {
   Sheet,
   SheetContent,
@@ -23,8 +23,8 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "../components/ui/sheet";
-import image from "../assets/image.png";
+} from "../../components/ui/sheet";
+import image from "../../assets/image.png";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -32,7 +32,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../components/ui/dropdown-menu";
+} from "../../components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Card, CardContent } from "@/components/ui/card";

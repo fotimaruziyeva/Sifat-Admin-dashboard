@@ -4,21 +4,18 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { ModeToggle } from "../components/mode-toggle";
+import { ModeToggle } from "../../components/mode-toggle";
 import {
-  BadgeDollarSign,
   Bell,
-  Edit,
-  Eye,
   KeyRound,
   LogOutIcon,
+  Package,
   Search,
   Settings,
   Timer,
-  Trash2,
   User2,
 } from "lucide-react";
-import { Input } from "../components/ui/input";
+import { Input } from "../../components/ui/input";
 import {
   Sheet,
   SheetContent,
@@ -26,8 +23,8 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "../components/ui/sheet";
-import image from "../assets/image.png";
+} from "../../components/ui/sheet";
+import image from "../../assets/image.png";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -35,7 +32,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../components/ui/dropdown-menu";
+} from "../../components/ui/dropdown-menu";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
@@ -47,8 +44,14 @@ import {
 } from "@/components/ui/table";
 import { orders } from "@/constants";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function Orders() {
   return (
@@ -101,8 +104,8 @@ export default function Orders() {
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                <Link to="/profile">
-                  <User2 /> Profile
+                  <Link to="/profile">
+                    <User2 /> Profile
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
@@ -118,87 +121,58 @@ export default function Orders() {
             <div className="relative flex items-center rounded-lg dark:bg-gray-800  bg-white px-2 py-1">
               <Input
                 placeholder="Search..."
-                className="border-none bg-transparent text-black placeholder-gray-400"
+                className="border-none bg-transparent dark:text-white text-black placeholder-gray-400"
               />
               <Search className="absolute right-2 text-gray-400" />
             </div>
           </div>
         </header>
         <div className="p-6  min-h-screen">
-          <div className="grid grid-cols-4 gap-4 pt-3">
-            <div className="flex flex-row gap-2 rounded-lg border border-gray-200 p-6">
-              <div>
-                <h3 className="text-lg font-bold text-black">Payment Refund</h3>
-                <span>490</span>
-              </div>
-              <div>
-                <BadgeDollarSign />
-              </div>
+          <div className="grid grid-cols-5 gap-10">
+            <div className="flex flex-col gap-2 relative border border-solid border-[#00000012] p-5 rounded-sm bg-slate-300 dark:text-black">
+              <span className="absolute top-3 right-3 text-black">
+                <Package size={14} />
+              </span>
+              <span className="text-2xl font-semibold">4000</span>
+              <p className="text-muted-foreground dark:text-black">
+                Total Orders
+              </p>
             </div>
-            <div className="flex flex-row gap-2 rounded-lg border border-gray-200 p-4">
-              <div>
-                <h3 className="text-lg font-bold text-black">Payment Refund</h3>
-                <span>490</span>
-              </div>
-              <div>
-                <BadgeDollarSign />
-              </div>
+            <div className="flex flex-col gap-2 relative border border-solid border-[#00000012] p-5 rounded-sm bg-slate-300 dark:text-black">
+              <span className="absolute top-3 right-3 text-black">
+                <Package size={14} />
+              </span>
+              <span className="text-2xl font-semibold">4000</span>
+              <p className="text-muted-foreground dark:text-black">
+                Total Orders
+              </p>
             </div>
-            <div className="flex flex-row gap-2 rounded-lg border border-gray-200 p-4">
-              <div>
-                <h3 className="text-lg font-bold text-black">Payment Refund</h3>
-                <span>490</span>
-              </div>
-              <div>
-                <BadgeDollarSign />
-              </div>
+            <div className="flex flex-col gap-2 relative border border-solid border-[#00000012] p-5 rounded-sm bg-slate-300 dark:text-black">
+              <span className="absolute top-3 right-3 text-black">
+                <Package size={14} />
+              </span>
+              <span className="text-2xl font-semibold">4000</span>
+              <p className="text-muted-foreground dark:text-black">
+                Total Orders
+              </p>
             </div>
-            <div className="flex flex-row gap-2 rounded-lg border border-gray-200 p-4">
-              <div>
-                <h3 className="text-lg font-bold text-black">Payment Refund</h3>
-                <span>490</span>
-              </div>
-              <div>
-                <BadgeDollarSign />
-              </div>
+            <div className="flex flex-col gap-2 relative border border-solid border-[#00000012] p-5 rounded-sm bg-slate-300 dark:text-black">
+              <span className="absolute top-3 right-3 text-black">
+                <Package size={14} />
+              </span>
+              <span className="text-2xl font-semibold">4000</span>
+              <p className="text-muted-foreground dark:text-black">
+                Total Orders
+              </p>
             </div>
-          </div>
-          <div className="grid grid-cols-4 gap-4 pt-3">
-            <div className="flex flex-row gap-2 rounded-lg border border-gray-200 p-2">
-              <div>
-                <h3 className="text-lg font-bold text-black">Payment Refund</h3>
-                <span>490</span>
-              </div>
-              <div>
-                <BadgeDollarSign />
-              </div>
-            </div>
-            <div className="flex flex-row gap-2 rounded-lg border border-gray-200 p-4">
-              <div>
-                <h3 className="text-lg font-bold text-black">Payment Refund</h3>
-                <span>490</span>
-              </div>
-              <div>
-                <BadgeDollarSign />
-              </div>
-            </div>
-            <div className="flex flex-row gap-2 rounded-lg border border-gray-200 p-4">
-              <div>
-                <h3 className="text-lg font-bold text-black">Payment Refund</h3>
-                <span>490</span>
-              </div>
-              <div>
-                <BadgeDollarSign />
-              </div>
-            </div>
-            <div className="flex flex-row gap-2 rounded-lg border border-gray-200 p-4">
-              <div>
-                <h3 className="text-lg font-bold text-black">Payment Refund</h3>
-                <span>490</span>
-              </div>
-              <div>
-                <BadgeDollarSign />
-              </div>
+            <div className="flex flex-col gap-2 relative border border-solid border-[#00000012] p-5 rounded-sm bg-slate-300 dark:text-black">
+              <span className="absolute top-3 right-3 text-black">
+                <Package size={14} />
+              </span>
+              <span className="text-2xl font-semibold">4000</span>
+              <p className="text-muted-foreground dark:text-black">
+                Total Orders
+              </p>
             </div>
           </div>
 
@@ -213,10 +187,8 @@ export default function Orders() {
                       <TableHead>Customer</TableHead>
                       <TableHead>Priority</TableHead>
                       <TableHead>Total</TableHead>
-                      <TableHead>Payment Status</TableHead>
                       <TableHead>Items</TableHead>
-                      <TableHead>Delivery Number</TableHead>
-                      <TableHead>Order Status</TableHead>
+                      <TableHead>Payment Status</TableHead>
                       <TableHead>Action</TableHead>
                     </TableRow>
                   </TableHeader>
@@ -230,40 +202,29 @@ export default function Orders() {
                         </TableCell>
                         <TableCell>{order.priority}</TableCell>
                         <TableCell>{order.total}</TableCell>
-                        <TableCell>
-                          <Badge
-                            variant={
-                              order.paymentStatus === "Paid"
-                                ? "default"
-                                : "destructive"
-                            }
-                          >
-                            {order.paymentStatus}
-                          </Badge>
-                        </TableCell>
                         <TableCell>{order.items}</TableCell>
-                        <TableCell>{order.delivery}</TableCell>
                         <TableCell>
-                          <Badge
-                            variant={
-                              order.orderStatus === "Completed"
-                                ? "default"
-                                : "destructive"
-                            }
-                          >
-                            {order.orderStatus}
-                          </Badge>
+                          <Select>
+                            <SelectTrigger className="w-[180px]">
+                              <SelectValue placeholder="Select" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="Pending" >
+                              Pending</SelectItem>
+                              <SelectItem value="processing">
+                                Processing
+                              </SelectItem>
+                              <SelectItem value="completed">
+                                Completed
+                              </SelectItem>
+                              <SelectItem value="cancelled">
+                                Cancelled
+                              </SelectItem>
+                            </SelectContent>
+                          </Select>
                         </TableCell>
                         <TableCell className="flex gap-2">
-                          <Button size="icon" variant="outline">
-                            <Eye size={16} />
-                          </Button>
-                          <Button size="icon" variant="outline">
-                            <Edit size={16} />
-                          </Button>
-                          <Button size="icon" variant="destructive">
-                            <Trash2 size={16} />
-                          </Button>
+                          <Button  variant={'secondary'} className="bg-green-600">Submit</Button>
                         </TableCell>
                       </TableRow>
                     ))}

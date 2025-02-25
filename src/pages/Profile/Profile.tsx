@@ -6,8 +6,8 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Bell, KeyRound, LogOutIcon, Search, Settings, Timer, User2 } from "lucide-react";
 
-import image from "../assets/image.png";
-import profile from "../assets/Man2profile.jpeg"
+import image from "../../assets/image.png";
+import profile from "../../assets/Man2profile.jpeg"
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 

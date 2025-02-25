@@ -128,14 +128,23 @@ export default function Navbar() {
 							/>
 							<Search className='absolute right-2 text-gray-400' />
 						</div>
+						<div className='flex gap-2'>
+						<Link to={'/login'}>
+						<Button className='dark:text-white text-black'>Login</Button>
+						</Link>
+						<Link to={'/register'}>
+						<Button className='dark:text-white text-black'>Register</Button>
+						</Link>
 					</div>
+					</div>
+				
 				</header>
 				<div className='flex flex-col  gap-4 mt-10 px-5'>
 					<div className='grid grid-cols-5 gap-10'>
 						<div className='flex flex-col gap-2 relative border border-solid border-[#00000012] p-5 rounded-sm bg-slate-300 dark:text-black'>
 							<span className='absolute top-3 right-3 text-black'>
 								<Package size={14} />
-							</span>
+								</span>
 							<span className='text-2xl font-semibold'>4000</span>
 							<p className='text-muted-foreground dark:text-black'>Total Products</p>
 						</div>

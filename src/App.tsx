@@ -1,17 +1,19 @@
 import { ThemeProvider } from '@/components/theme-provider'
 import { Route, Routes } from 'react-router-dom'
 import HomePage from './pages/HomePage'
-import Category from './pages/Category'
-import CreateCategory from './pages/CreateCategory'
-import EditCategory from './pages/EditCategory'
-import Products from './pages/Products'
-import EditProducts from './pages/EditProducts'
-import CreateProducts from './pages/CreateProducts'
-import Orders from './pages/Orders'
-import Profile from './pages/Profile'
-
-
-
+import CreateCategory from './pages/Category/CreateCategory'
+import EditCategory from './pages/Category/EditCategory'
+import EditProducts from './pages/Product/EditProducts'
+import CreateProducts from './pages/Product/CreateProducts'
+import Orders from './pages/Orders/Orders'
+import Profile from './pages/Profile/Profile'
+import Login from './pages/Profile/Login'
+import Register from './pages/Profile/Register'
+import Products from './pages/Product/Products'
+import Category from './pages/Category/Category'
+import List from './pages/Coupons/List'
+import Add from './pages/Coupons/Add'
+import SellersList from './pages/Sellers/List'
 function App() {
 	return (
 		<ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
@@ -25,6 +27,11 @@ function App() {
 				<Route path='/edit' element={<EditCategory/>}></Route>
 				<Route path='/orders' element={<Orders/>}></Route>
 				<Route path='/profile' element={<Profile/>}></Route>
+				<Route path='/login' element={<Login/>}></Route>
+				<Route path='/register' element={<Register/>}></Route>
+				<Route path='/coupons/list' element={<List/>}></Route>
+				<Route path='/coupons/add' element={<Add/>}></Route>
+				<Route path='/sellers/list' element={<SellersList/>}></Route>
 			</Routes>
 		</ThemeProvider>
 	)

@@ -2,6 +2,7 @@ import clothes from "../assets/clothes.png";
 import image2 from "../assets/2..png";
 import image3 from "../assets/3.png";
 import image4 from "../assets/4.png";
+import rolex from "../assets/rolex.png"
 import resentimage from "../assets/computer.png"
 export const category = [
   {
@@ -191,10 +192,6 @@ export const orders = [
     customer: "Gail C. Anderson",
     priority: "Normal",
     total: "$1,230.00",
-    paymentStatus: "Unpaid",
-    items: 4,
-    delivery: "-",
-    orderStatus: "Draft",
   },
   {
     id: "#465754/80",
@@ -381,3 +378,42 @@ export const recentOrder=[
 		amt: 2100,
 	},
 ]
+ export const companies = [
+  {
+    name: "Rolex Watches",
+    logo: rolex,
+    rating: 4.5,
+    reviews: "3.5k",
+    address: "4604, Philli Lane Kiowa IN 47404",
+    email: "zarafashionworld@dayrep.com",
+    phone: "+243 812-801-9335",
+    stock: 865,
+    sells: "+4.5k",
+    clients: "+2k",
+  },
+  {
+    name: "Rolex Watches",
+    logo: rolex,
+    rating: 4.5,
+    reviews: "3.5k",
+    address: "4604, Philli Lane Kiowa IN 47404",
+    email: "zarafashionworld@dayrep.com",
+    phone: "+243 812-801-9335",
+    stock: 865,
+    sells: "+4.5k",
+    clients: "+2k",
+  },
+  {
+    name: "Rolex Watches",
+    logo: rolex,
+    rating: 4.5,
+    reviews: "3.5k",
+    address: "4604, Philli Lane Kiowa IN 47404",
+    email: "zarafashionworld@dayrep.com",
+    phone: "+243 812-801-9335",
+    stock: 865,
+    sells: "+4.5k",
+    clients: "+2k",
+  },
+  
+];

@@ -180,7 +180,17 @@ const data = {
         title: "Coupons",
         url: "#",
         icon: Receipt,
-       
+        isActive: true,
+        items: [
+          {
+            title: "List",
+            url: "/coupons/list",
+          },
+          {
+            title: "Add",
+            url: "/coupons/add",
+          }
+        ],
       },
   ],
   projects: [
