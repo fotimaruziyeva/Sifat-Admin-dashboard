@@ -173,6 +173,12 @@ const data = {
         url: "#",
         icon: SquareTerminal,
         isActive: false,
+        items: [
+          {
+            title: "List",
+            url: "/sellers/list",
+          }
+        ],
        
       },
     //   Coupons
