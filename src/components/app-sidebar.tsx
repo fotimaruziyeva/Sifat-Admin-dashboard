@@ -17,9 +17,8 @@ import {
   Receipt,
   Settings,
   User,
-  ArchiveRestore,
-  PartyPopperIcon,
-  File,
+  // ArchiveRestore,
+  // File,
 } from "lucide-react"
 
 import {
@@ -115,12 +114,6 @@ const data = {
       ],
     },
     // Inventory
-    {
-      title: "Inventory",
-      url: "#",
-      icon: BookPlus,
-  
-    },
     // Orders
     { 
         title: "Orders",
@@ -135,38 +128,22 @@ const data = {
         ],
       },
     //   Purchases
-      { 
-        title: "Purchases",
-        url: "#",
-        icon: ArchiveRestore,
-        isActive: false,
+    //   { 
+    //     title: "Purchases",
+    //     url: "#",
+    //     icon: ArchiveRestore,
+    //     isActive: false,
        
-      },
-    //   Attributes
-      { 
-        title: "Attributes",
-        url: "#",
-        icon: PartyPopperIcon,
-        isActive: false,
-        
-      
-      },
-    //   Invoices
-      { 
-        title: "Invoices",
-        url: "#",
-        icon: File,
-        isActive: false,
+    //   },
+    // //   Invoices
+    //   { 
+    //     title: "Invoices",
+    //     url: "#",
+    //     icon: File,
+    //     isActive: false,
        
-      },
-    //   Customers
-      { 
-        title: "Customers",
-        url: "#",
-        icon: Store,
-        isActive: false,
-       
-      },
+    //   },
+  
     //   Sellers
     { 
         title: "Sellers",

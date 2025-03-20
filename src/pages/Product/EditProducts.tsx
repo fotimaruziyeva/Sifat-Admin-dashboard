@@ -125,7 +125,7 @@ const EditProducts = () => {
           <div className="p-6  min-h-screen">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
               <div className="dark:bg-zinc-900  bg-white h-3/4 p-6 rounded-xl shadow-lg ">
-                <div className="flex justify-center items-center dark:bg-zinc-800 bg-white shadow-lg rounded ">
+                <div className="flex justify-center items-center dark:bg-zinc-800 bg-white ">
                   <img src={images} alt="Category" className="w-48 h-48" />
                 </div>
                 <div className="">

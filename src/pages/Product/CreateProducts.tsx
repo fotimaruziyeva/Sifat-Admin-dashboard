@@ -42,15 +42,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-
-
+import { useState } from "react";
+import { Label } from "@/components/ui/label";
 
 const CreateProducts = () => {
+  const [inputs, setInputs] = useState<string[]>([]);
 
+  const addInputs = () => {
+    setInputs([...inputs, ""]);
+  };
   return (
     <div>
-        <SidebarProvider className="w-screen">
+      <SidebarProvider className="w-screen">
         <AppSidebar />
         <SidebarInset>
           <header className="flex h-16 items-center justify-between px-4 border-b ">
@@ -124,8 +127,8 @@ const CreateProducts = () => {
           </header>
           <div className="p-6  min-h-screen">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
-              <div className="dark:bg-zinc-900  bg-white h-3/4 p-6 rounded-xl shadow-lg ">
-                <div className="flex justify-center items-center dark:bg-zinc-800 bg-white shadow-lg rounded ">
+              <div className="dark:bg-zinc-900  bg-white h-full p-6 rounded-xl shadow-lg ">
+                <div className="flex justify-center items-center dark:bg-zinc-800 bg-white  rounded ">
                   <img src={images} alt="Category" className="w-48 h-48" />
                 </div>
                 <div className="">
@@ -166,7 +169,7 @@ const CreateProducts = () => {
 
               {/* Right Form */}
               <div className="md:col-span-2 space-y-6">
-                <div className="dark:bg-zinc-900 bg-white p-6 rounded-xl shadow-lg">
+                <div className="dark:bg-zinc-900 bg-white p-6 rounded-xl ">
                   <h3 className="font-semibold text-lg dark:text-[#aab8c5] text-black">
                     Add Thumbnail Photo
                   </h3>
@@ -177,9 +180,13 @@ const CreateProducts = () => {
                     Product Information
                   </h4>
                   <div className="space-y-4 dark:text-white text-black">
-                    <div className="grid grid-cols-2 gap-4 pt-3">
-                      
-                      <Input placeholder="Product Name" />
+                    <div className="grid grid-cols-2 gap-4 pt-2">
+                      <div>
+                        <Label>Mahsulot nomi</Label>
+                        <Input placeholder="Mahsulot nomi" />
+                      </div>
+                     <div>
+                      <Label>Mahsulot kategoriyasi</Label>
                       <Select>
                         <SelectTrigger>
                           <SelectValue placeholder="Choose a category" />
@@ -217,70 +224,48 @@ const CreateProducts = () => {
                           </SelectItem>
                         </SelectContent>
                       </Select>
+                     </div>
+                   
                     </div>
-
-                    <div className="grid grid-cols-3 gap-4">
-                      <Input placeholder="Brand Name" />
-                      <Input placeholder="Weight" />
-                      <Select>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select Gender" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="men">Men</SelectItem>
-                          <SelectItem value="women">Women</SelectItem>
-                          <SelectItem value="unisex">Unisex</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="flex flex-row  gap-10">
-                        <div className="flex flex-col gap-2">
-                          <span>Size:</span>
-                          <div className="flex gap-2">
-                            <Button>XS</Button>
-                            <Button>S</Button>
-                            <Button>M</Button>
-                            <Button>L</Button>
-                            <Button>XL</Button>
-                          </div>
-                        </div>
-                        <div className="flex flex-col gap-2">
-                          <h4>Colors:</h4>
-                          <div className="flex gap-2">
-                            <Button className="bg-red-500 text-white rounded-full  w-10 h-8"></Button>
-                            <Button className="bg-blue-500 text-white rounded-full w-10 h-8"></Button>
-                            <Button className="bg-green-500 text-white rounded-full w-10 h-8"></Button>
-                            <Button className="bg-yellow-500 text-white rounded-full w-10 h-8"></Button>
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-
-                    <Textarea placeholder="Short description about the product" className="mt-2 h-36" />
-
-                    <div className="grid grid-cols-2 gap-4">
-                      <Input placeholder="#*****" />
-                      <Input placeholder="Quantity" />
-                    </div>
-
-                    <h2 className="text-xl font-semibold mt-4">
-                      Pricing Details
-                    </h2>
-
-                    <div className="grid grid-cols-3 gap-4">
-                      <Input placeholder="$ 000" />
-                      <Input placeholder="% 000" />
-                      <Input placeholder="Tax" />
-                    </div>
-
-                    <div className="flex gap-4 justify-end pt-3 ">
-                      <Button >Create Product </Button>
-                      <Button className="bg-orange-400">Cancel</Button>
+                    <div className="grid grid-cols-2 gap-4 ">
+                     <div >
+                      <Label>Mahsulot narxi</Label>
+                     <Input placeholder="Product Price" type="number" />
+                     </div>
+                     <div>
+                      <Label>Mahsulotning chegirma narxi</Label>
+                      <Input placeholder="Product Stock" />
+                     </div>
                     </div>
                   </div>
+                  <div className="space-y-4 dark:text-white text-black">
+                    <div className="grid grid-cols-2 gap-4 pt-3">
+                      <Input placeholder="Product Price" />
+                      <Input placeholder="Product Stock" />
+                    </div>
+                  </div>
+                  <div>
+                  {inputs.map((id) => (
+                    <div key={id} className="grid grid-cols-2 gap-4 pt-4">
+                      <Input placeholder="Product Price" />
+                      <Input placeholder="Product Stock" />
+                    </div>
+                  ))} <br /> 
+                  <Button
+                  onClick={addInputs}
+                  className="bg-green-500 text-white px-4 py-2 rounded-md mb-4"
+                >
+                  Xususiyatlar
+                </Button>
+                  </div>
+                  <div className="flex justify-end gap-4">
+                  <Button className="bg-green-500 text-white px-10 py-6 rounded-md mb-4">Yangilash</Button>
+                  <Button className="bg-green-500 text-white px-10 py-6 rounded-md mb-4">Saqlash</Button>
+                  </div>
+                
+                
                 </div>
+              
               </div>
             </div>
           </div>
