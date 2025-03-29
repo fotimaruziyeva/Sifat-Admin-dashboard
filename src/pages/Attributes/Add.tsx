@@ -17,7 +17,7 @@ import {
 
 import image from "../../assets/image.png";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ModeToggle } from "@/components/mode-toggle";
 import {
   Sheet,
@@ -36,42 +36,42 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
-import { API_REQUEST } from "@/lib/apiRequest";
-import axios from "axios";
-import Cookies from "js-cookie";
-import { toast } from "sonner";
+// import { useState } from "react";
+// import { API_REQUEST } from "@/lib/apiRequest";
+// import axios from "axios";
+// import Cookies from "js-cookie";
+// import { toast } from "sonner";
 
 export default function AttributesAdd() {
-const [name, setName] = useState("");
-const [characteristics, setCharacteristics] = useState("");
-const accessToken = Cookies.get("access_token");
-const navigate = useNavigate();
-const handleLogOut = () => {
-    Cookies.remove("access_token");
-    Cookies.remove("refresh");
-    navigate("/login");
-  };
-  const handleSubmit = async () => {
-    const data = {
-      name,
-     characteristics
-    };
+// const [name, setName] = useState("");
+// const [characteristics, setCharacteristics] = useState("");
+// const accessToken = Cookies.get("access_token");
+// const navigate = useNavigate();
+// const handleLogOut = () => {
+//     Cookies.remove("access_token");
+//     Cookies.remove("refresh");
+//     navigate("/login");
+//   };
+//   const handleSubmit = async () => {
+//     const data = {
+//       name,
+//      characteristics
+//     };
 
-    await axios
-      .post(API_REQUEST.category, data, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      .then(() => {
-        toast.success("Muvaffaqiyatli qo'shildi", {
-          position: "top-center",
-          richColors: true,
-        });
-      })
-      .catch((err) => console.log(err));
-  };
+  //   await axios
+  //     .post(API_REQUEST.category, data, {
+  //       headers: {
+  //         Authorization: `Bearer ${accessToken}`,
+  //       },
+  //     })
+  //     .then(() => {
+  //       toast.success("Muvaffaqiyatli qo'shildi", {
+  //         position: "top-center",
+  //         richColors: true,
+  //       });
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
   return (
     <SidebarProvider className=" w-screen dark:text-white text-black dark:bg-black bg-white shadow-lg">
       <AppSidebar />
@@ -129,7 +129,7 @@ const handleLogOut = () => {
                 <DropdownMenuItem>
                   <KeyRound /> Password
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={handleLogOut}>
+                <DropdownMenuItem >
                   <LogOutIcon /> Logout
                 </DropdownMenuItem>
               </DropdownMenuContent>

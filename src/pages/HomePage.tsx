@@ -34,7 +34,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../components/ui/dropdown-menu";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   BarChart,
   Bar,
@@ -55,47 +55,46 @@ import {
 } from "@/components/ui/select";
 import { data, recentOrder } from "@/constants";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
-import { toast } from "sonner";
-import axios from "axios";
-import { API_REQUEST } from "@/lib/apiRequest";
+// import { useEffect } from "react";
+// import Cookies from "js-cookie";
+// import { toast } from "sonner";
+// import axios from "axios";
+// import { API_REQUEST } from "@/lib/apiRequest";
 
 export default function Navbar() {
-  const navigate = useNavigate();
-  const [orders, setOrders] = useState([]);
-  const accessToken = Cookies.get('access_token')
-  const refresh = Cookies.get('refresh')
-  const handleLogOut = () => {
-    Cookies.remove("access_token");
-    Cookies.remove("refresh");
-    navigate("/login");
-  };
+  // const navigate = useNavigate();
+  // const accessToken = Cookies.get('access_token')
+  // const refresh = Cookies.get('refresh')
+  // const handleLogOut = () => {
+  //   Cookies.remove("access_token");
+  //   Cookies.remove("refresh");
+  //   navigate("/login");
+  // };
 
-  useEffect(() => {
-	if (!accessToken) {
-		toast.warning('Iltimos tizimga kiring!', {
-			position: 'top-center',
-			richColors: true,
-		})
+  // useEffect(() => {
+	// if (!accessToken) {
+	// 	toast.warning('Iltimos tizimga kiring!', {
+	// 		position: 'top-center',
+	// 		richColors: true,
+	// 	})
 
-		navigate('/login')
-	}
+	// 	navigate('/login')
+	// }
 	
-	const fetchOrders = async () => {
-		await axios
-			.get(API_REQUEST.orders, {
-				headers: {
-					Authorization: `Bearer ${accessToken}`,
-				},
-			})
-			.then(res => setOrders(res.data.results))
-			.catch(err => console.log(err))
+// 	const fetchOrders = async () => {
+// 		await axios
+// 			.get(API_REQUEST.orders, {
+// 				headers: {
+// 					Authorization: `Bearer ${accessToken}`,
+// 				},
+// 			})
+// 			.then(res => setOrders(res.data.results))
+// 			.catch(err => console.log(err))
 			
-	}
+// 	}
 
-	fetchOrders()
-}, [accessToken, refresh])
+// 	fetchOrders()
+// }, [accessToken, refresh])
 
   return (
     <SidebarProvider className=" w-screen dark:text-white text-black dark:bg-black bg-white shadow-lg">
@@ -154,7 +153,7 @@ export default function Navbar() {
                 <DropdownMenuItem>
                   <KeyRound /> Password
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={handleLogOut}>
+                <DropdownMenuItem >
                   <LogOutIcon /> Logout
                 </DropdownMenuItem>
               </DropdownMenuContent>
