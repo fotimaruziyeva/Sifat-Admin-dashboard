@@ -110,6 +110,25 @@ const data = {
         },
       ],
     },
+    {
+      title: "Attributes",
+      url: "#",
+      icon: ScrollText,
+      items: [
+        {
+          title: "List",
+          url: "/attribbutes/list",
+        },
+        {
+          title: "Edit",
+          url: "/attribbutes/edit",
+        },
+        {
+          title: "Create",
+          url: "/attribbutes/add",
+        },
+      ],
+    },
     // Inventory
     // Orders
     { 

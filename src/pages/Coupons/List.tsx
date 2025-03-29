@@ -1,3 +1,4 @@
+"use client"
 import { AppSidebar } from "@/components/app-sidebar";
 import {
   SidebarInset,
@@ -36,11 +37,47 @@ import {
   DropdownMenuTrigger,
 } from "../../components/ui/dropdown-menu";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
+import { useEffect, useState } from "react";
+import { Coupons } from "@/interfaces";
+import Cookies from "js-cookie";
+import { API_REQUEST } from "@/lib/apiRequest";
+import axios from "axios";
 
 export default function List() {
+  const[coupons,setCoupons]=useState<Coupons[]>([])
+  const navigate=useNavigate();
+  const accessToken = Cookies.get("access_token"); 
+
+
+ const handleLogOut = () => {
+    Cookies.remove("access_token");
+    Cookies.remove("refresh");
+    navigate("/login");
+  };
+
+   
+  useEffect(() => {
+    const fetchCoupons = async () => {
+      try {
+        const response = await axios.get(API_REQUEST.coupons, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        setCoupons(response.data.data);
+        console.log(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchCoupons();
+  }, [accessToken]);
   return (
     <SidebarProvider className=" w-screen">
       <AppSidebar />
@@ -98,7 +135,7 @@ export default function List() {
                 <DropdownMenuItem>
                   <KeyRound /> Password
                 </DropdownMenuItem>
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={handleLogOut}>
                   <LogOutIcon /> Logout
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -122,14 +159,16 @@ export default function List() {
             </Link>
           </div>
           <div className="flex flex-wrap flex-row gap-7">
-            <div className="w-80 bg-whitebg-gray-100 dark:bg-zinc-700 rounded-2xl shadow-lg overflow-hidden">
+            {
+             coupons.map((coupon=>(
+              <div className="w-80 bg-whitebg-gray-100 dark:bg-zinc-700 rounded-2xl shadow-lg overflow-hidden" key={coupon.id}>
               <div className="flex items-center justify-center h-32">
                 <RiCoupon2Line className="text-5xl text-gray-500 dark:text-gray-400" />
               </div>
               <div className="p-5">
                 <div className="flex justify-between items-center pb-3 ">
                   <p className="text-black dark:text-white text-sm font-medium">
-                    Kupon nomi
+                    {coupon.name}
                   </p>
                   <div className="flex gap-2">
                     <Button  size="icon">
@@ -148,7 +187,7 @@ export default function List() {
                     Belgilangan qiymat:
                   </p>
                   <div className="flex gap-2">
-                    <p>8000</p>
+                    <p>{coupon.discount}</p>
                   </div>
                 </div>
                 <div className="flex justify-between items-center pb-3">
@@ -156,151 +195,7 @@ export default function List() {
                     Muddati:
                   </p>
                   <div className="flex gap-2">
-                    <p>24.02.2025</p>
-                  </div>
-                </div>
-                {/*  */}
-                <div className="flex justify-between items-center">
-                  <p className="text-black dark:text-white text-sm font-medium">
-                    Aktiv
-                  </p>
-                  <div className="flex gap-2">
-                    <Switch/>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-80 bg-whitebg-gray-100 dark:bg-zinc-700 rounded-2xl shadow-lg overflow-hidden">
-              <div className="flex items-center justify-center h-32">
-                <RiCoupon2Line className="text-5xl text-gray-500 dark:text-gray-400" />
-              </div>
-              <div className="p-5">
-                <div className="flex justify-between items-center pb-3 ">
-                  <p className="text-black dark:text-white text-sm font-medium">
-                    Kupon nomi
-                  </p>
-                  <div className="flex gap-2">
-                    <Button  size="icon">
-                      <Edit2 className="w-4 h-4" />
-                    </Button>
-                    <Button
-                      variant="destructive"
-                      size="icon"
-                    >
-                      <Trash className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center pb-3">
-                  <p className="text-black dark:text-white text-sm font-medium">
-                    Belgilangan qiymat:
-                  </p>
-                  <div className="flex gap-2">
-                    <p>8000</p>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center pb-3">
-                  <p className="text-black dark:text-white text-sm font-medium">
-                    Muddati:
-                  </p>
-                  <div className="flex gap-2">
-                    <p>24.02.2025</p>
-                  </div>
-                </div>
-                {/*  */}
-                <div className="flex justify-between items-center">
-                  <p className="text-black dark:text-white text-sm font-medium">
-                    Aktiv
-                  </p>
-                  <div className="flex gap-2">
-                    <Switch/>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-80 bg-whitebg-gray-100 dark:bg-zinc-700 rounded-2xl shadow-lg overflow-hidden">
-              <div className="flex items-center justify-center h-32">
-                <RiCoupon2Line className="text-5xl text-gray-500 dark:text-gray-400" />
-              </div>
-              <div className="p-5">
-                <div className="flex justify-between items-center pb-3 ">
-                  <p className="text-black dark:text-white text-sm font-medium">
-                    Kupon nomi
-                  </p>
-                  <div className="flex gap-2">
-                    <Button  size="icon">
-                      <Edit2 className="w-4 h-4" />
-                    </Button>
-                    <Button
-                      variant="destructive"
-                      size="icon"
-                    >
-                      <Trash className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center pb-3">
-                  <p className="text-black dark:text-white text-sm font-medium">
-                    Belgilangan qiymat:
-                  </p>
-                  <div className="flex gap-2">
-                    <p>8000</p>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center pb-3">
-                  <p className="text-black dark:text-white text-sm font-medium">
-                    Muddati:
-                  </p>
-                  <div className="flex gap-2">
-                    <p>24.02.2025</p>
-                  </div>
-                </div>
-                {/*  */}
-                <div className="flex justify-between items-center">
-                  <p className="text-black dark:text-white text-sm font-medium">
-                    Aktiv
-                  </p>
-                  <div className="flex gap-2">
-                    <Switch/>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-80 bg-whitebg-gray-100 dark:bg-zinc-700 rounded-2xl shadow-lg overflow-hidden">
-              <div className="flex items-center justify-center h-32">
-                <RiCoupon2Line className="text-5xl text-gray-500 dark:text-gray-400" />
-              </div>
-              <div className="p-5">
-                <div className="flex justify-between items-center pb-3 ">
-                  <p className="text-black dark:text-white text-sm font-medium">
-                    Kupon nomi
-                  </p>
-                  <div className="flex gap-2">
-                    <Button  size="icon">
-                      <Edit2 className="w-4 h-4" />
-                    </Button>
-                    <Button
-                      variant="destructive"
-                      size="icon"
-                    >
-                      <Trash className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center pb-3">
-                  <p className="text-black dark:text-white text-sm font-medium">
-                    Belgilangan qiymat:
-                  </p>
-                  <div className="flex gap-2">
-                    <p>8000</p>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center pb-3">
-                  <p className="text-black dark:text-white text-sm font-medium">
-                    Muddati:
-                  </p>
-                  <div className="flex gap-2">
-                    <p>24.02.2025</p>
+                    <p>{coupon.date}</p>
                   </div>
                 </div>
                 {/*  */}
@@ -314,6 +209,10 @@ export default function List() {
                 </div>
               </div>
             </div>
+             )))
+            }
+           
+      
           </div>
         </div>
       </SidebarInset>

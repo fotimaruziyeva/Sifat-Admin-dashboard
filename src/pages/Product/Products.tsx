@@ -1,3 +1,4 @@
+"use client";
 import { AppSidebar } from "@/components/app-sidebar";
 import {
   SidebarInset,
@@ -36,7 +37,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Card, CardContent } from "@/components/ui/card";
-import { categories, gender, priceRanges, products, rating, sizes } from "@/constants";
+import {  gender, rating, sizes } from "@/constants";
 import {
   Accordion,
   AccordionContent,
@@ -44,9 +45,93 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Category, Product } from "@/interfaces";
+import axios from "axios";
+import { API_REQUEST } from "@/lib/apiRequest";
+import Cookies from "js-cookie";
+import { toast } from "sonner";
+
 
 export default function Products() {
+  const [category, setCategory] = useState<Category[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [refresh, setRefresh] = useState(false)
+  const accessToken = Cookies.get("access_token"); 
+  const navigate=useNavigate()
+  
+ const handleLogOut = () => {
+    Cookies.remove("access_token");
+    Cookies.remove("refresh");
+    navigate("/login");
+  };
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(API_REQUEST.products);
+        setProducts(response.data.data);
+        console.log(API_REQUEST.products);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, [refresh]);
+
+  const handleDelete = async (id: number) => {
+		if (!accessToken) {
+			toast.warning('Iltimos tizimga kiring!', {
+				position: 'top-center',
+				richColors: true,
+			})
+
+			navigate('/login')
+		}
+		await axios
+			.delete(`${API_REQUEST.products}/{id}?product_id=${id}`, {
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+				},
+			})
+			.then(() => {
+				toast.info('Deleted success!', {
+					position: 'top-center',
+					richColors: true,
+				})
+        setRefresh(!refresh)
+			})
+			.catch(err => console.log(err))
+	}
+  
+  useEffect(() => {
+    const fetchCategory = async () => {
+      try {
+        const response = await axios.get(API_REQUEST.category, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        setCategory(response.data.data);
+        console.log(response.data.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchCategory();
+  }, [accessToken]);
+
+
+  if (!products || !Array.isArray(products)) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <SidebarProvider className="w-screen">
       <AppSidebar />
@@ -84,14 +169,14 @@ export default function Products() {
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                <Link to="/profile">
-                  <User2 /> Profile
+                  <Link to="/profile">
+                    <User2 /> Profile
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <KeyRound /> Password
                 </DropdownMenuItem>
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={handleLogOut}>
                   <LogOutIcon /> Logout
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -108,7 +193,10 @@ export default function Products() {
         <div className="dark:bg-zinc-900  bg-white dark:text-white text-black min-h-screen p-6">
           <div className="flex justify-between items-center mb-4">
             <div className="relative">
-              <Input placeholder="Search ..." className="pl-10 dark:bg-zinc-800 bg-white shadow-lg" />
+              <Input
+                placeholder="Search ..."
+                className="pl-10 dark:bg-zinc-800 bg-white shadow-lg"
+              />
               <Search
                 className="absolute left-3 top-2 text-gray-400"
                 size={20}
@@ -125,22 +213,22 @@ export default function Products() {
                   <AccordionTrigger>Categories</AccordionTrigger>
                   <AccordionContent>
                     <Checkbox /> All Categories
-                    {categories.map((range, index) => (
+                    {category.map((range, index) => (
                       <label key={index} className="flex items-center gap-2">
-                        <Checkbox /> {range}
+                        <Checkbox /> {range.name}
                       </label>
                     ))}
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
               <Accordion type="single" collapsible>
-              <AccordionItem value="item-1">
+                <AccordionItem value="item-1">
                   <AccordionTrigger>Product price</AccordionTrigger>
                   <AccordionContent>
                     <Checkbox /> All Price
-                    {priceRanges.map((range, index) => (
+                    {products.map((range, index) => (
                       <label key={index} className="flex items-center gap-2">
-                        <Checkbox /> {range}
+                        <Checkbox /> {range.price}
                       </label>
                     ))}
                   </AccordionContent>
@@ -150,9 +238,11 @@ export default function Products() {
               <h2 className="text-lg font-semibold mt-4 mb-3">Product Price</h2>
               <Slider min={0} max={1000} defaultValue={[200]} />
               {/*  */}
-              <Accordion className="pt-3 "  type="single" collapsible>
-              <AccordionItem  value="item-1">
-                  <AccordionTrigger className="rounded">Gender </AccordionTrigger>
+              <Accordion className="pt-3 " type="single" collapsible>
+                <AccordionItem value="item-1">
+                  <AccordionTrigger className="rounded">
+                    Gender{" "}
+                  </AccordionTrigger>
                   <AccordionContent>
                     {gender.map((range, index) => (
                       <label key={index} className="flex items-center gap-2">
@@ -161,11 +251,13 @@ export default function Products() {
                     ))}
                   </AccordionContent>
                 </AccordionItem>
-                </Accordion>
-                {/*  */}
-                <Accordion className="pt-3 "  type="single" collapsible>
-              <AccordionItem  value="item-1">
-                  <AccordionTrigger className="rounded">Size &Fit </AccordionTrigger>
+              </Accordion>
+              {/*  */}
+              <Accordion className="pt-3 " type="single" collapsible>
+                <AccordionItem value="item-1">
+                  <AccordionTrigger className="rounded">
+                    Size &Fit{" "}
+                  </AccordionTrigger>
                   <AccordionContent>
                     {sizes.map((range, index) => (
                       <label key={index} className="flex items-center gap-2">
@@ -174,11 +266,13 @@ export default function Products() {
                     ))}
                   </AccordionContent>
                 </AccordionItem>
-                </Accordion>
-                {/* rating */}
-                <Accordion className="pt-3 "  type="single" collapsible>
-              <AccordionItem  value="item-1">
-                  <AccordionTrigger className="rounded">Rating </AccordionTrigger>
+              </Accordion>
+              {/* rating */}
+              <Accordion className="pt-3 " type="single" collapsible>
+                <AccordionItem value="item-1">
+                  <AccordionTrigger className="rounded">
+                    Rating{" "}
+                  </AccordionTrigger>
                   <AccordionContent>
                     {rating.map((range, index) => (
                       <label key={index} className="flex items-center gap-2">
@@ -187,35 +281,32 @@ export default function Products() {
                     ))}
                   </AccordionContent>
                 </AccordionItem>
-                </Accordion>
-                <Button className="w-full mt-4">Apply</Button>
+              </Accordion>
+              <Button className="w-full mt-4">Apply</Button>
             </aside>
             <main className="w-3/4 grid grid-cols-3 gap-4">
-              {products.map((product, index) => (
-                <Card key={index} className="dark:bg-zinc-800  bg-white shadow-lg rounded-xl">
+              {products.map((product) => (
+                <Card
+                  key={product.id}
+                  className="dark:bg-zinc-800 bg-white shadow-lg rounded-xl"
+                >
                   <CardContent className="p-4">
-                    <img
-                      src={product.img}
-                      alt={product.name}
-                      className="rounded-lg mb-3"
-                    />
                     <h3 className="text-lg font-bold">{product.name}</h3>
-                    <p className="text-yellow-400">
-                      ★ {product.rating} ({product.reviews} Reviews)
-                    </p>
+                    <p className="text-yellow-400">★ {product.view_count}</p>
                     <p className="text-gray-300 line-through">
-                      ${product.originalPrice}
+                      ${product.price}
                     </p>
-                    <p className="text-green-400 text-xl">
-                      ${product.price}{" "}
-                      <span className="text-sm">({product.discount})</span>
-                    </p>
+                    {product.dis_count_price && (
+                      <p className="text-green-400 text-xl">
+                        ${product.dis_count_price}
+                      </p>
+                    )}
                     <div className="flex flex-row gap-2">
-                      <Button className=" w-full mt-2">Add To Cart</Button>
-                      <Button className=" w-full mt-2 bg-blue-600">
+                      <Button className="w-full mt-2">Add To Cart</Button>
+                      <Button className="w-full mt-2 bg-blue-600">
                         <Edit2 />
                       </Button>
-                      <Button className="w-full mt-2" variant={"destructive"}>
+                      <Button className="w-full mt-2" variant={"destructive"} onClick={() => handleDelete(product.id)} >
                         <Trash2 />
                       </Button>
                     </div>

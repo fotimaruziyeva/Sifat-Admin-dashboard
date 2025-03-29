@@ -24,11 +24,13 @@ import {
 } from "@/components/ui/sidebar";
 import {
   Bell,
+  Camera,
   KeyRound,
   LogOutIcon,
   Search,
   Settings,
   Timer,
+  Trash2,
   User2,
 } from "lucide-react";
 import image from "../../assets/image.png";
@@ -44,8 +46,34 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Label } from "@/components/ui/label";
 
 const EditProducts = () => {
+  const [inputs, setInputs] = useState<string[]>([]);
+  
+    const addInputs = () => {
+      setInputs([...inputs, ""]);
+    };
+    const [mainImage, setMainImage] = useState<File | null>(null);
+    const [additionalImages, setAdditionalImages] = useState<File[]>([]);
+  
+    const handleMainImageChange = (
+      event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+      if (event.target.files && event.target.files[0]) {
+        setMainImage(event.target.files[0]);
+      }
+    };
+  
+    const handleAdditionalImagesChange = (
+      event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+      if (event.target.files) {
+        setAdditionalImages([...additionalImages, event.target.files[0]]);
+      }
+    };
+  
   return (
     <div>
       <SidebarProvider className="w-screen">
@@ -124,8 +152,8 @@ const EditProducts = () => {
           </header>
           <div className="p-6  min-h-screen">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
-              <div className="dark:bg-zinc-900  bg-white h-3/4 p-6 rounded-xl shadow-lg ">
-                <div className="flex justify-center items-center dark:bg-zinc-800 bg-white ">
+              <div className="dark:bg-zinc-900  bg-white h-min p-6 rounded-xl shadow-md ">
+                <div className="flex justify-center items-center dark:bg-zinc-800 bg-white  rounded ">
                   <img src={images} alt="Category" className="w-48 h-48" />
                 </div>
                 <div className="">
@@ -166,119 +194,265 @@ const EditProducts = () => {
 
               {/* Right Form */}
               <div className="md:col-span-2 space-y-6">
-                <div className="dark:bg-zinc-900 bg-white p-6 rounded-xl shadow-lg">
-                  <h3 className="font-semibold text-lg dark:text-[#aab8c5] text-black">
-                    Add Thumbnail Photo
-                  </h3>
-                  <Input type="file" className="mt-10"></Input>
-                </div>
-                <div className="dark:bg-zinc-900 p-6 rounded-xl shadow-lg text-black">
-                  <h4 className="dark:text-[#aab8c5] text-black">
-                    Product Information
-                  </h4>
+                <div className="dark:bg-zinc-900 p-6 rounded-xl shadow-md text-black">
                   <div className="space-y-4 dark:text-white text-black">
-                    <div className="grid grid-cols-2 gap-4 pt-3">
-                      <Input placeholder="Men Black Slim Fit T-shirt (Fashion)" />
-                      <Select>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Choose a category" />
-                        </SelectTrigger>
-                        <SelectContent className="dark:text-white text-black">
-                          <SelectItem
-                            value="clothing"
-                            className="dark:text-white text-black"
-                          >
-                            Clothing
-                          </SelectItem>
-                          <SelectItem
-                            value="accessory"
-                            className="dark:text-white text-black"
-                          >
-                            Accessory
-                          </SelectItem>
-                          <SelectItem
-                            value="Footwear"
-                            className="dark:text-white text-black"
-                          >
-                            Footwear
-                          </SelectItem>
-                          <SelectItem
-                            value="Furniture"
-                            className="dark:text-white text-black"
-                          >
-                            Furniture
-                          </SelectItem>
-                          <SelectItem
-                            value="Headphones"
-                            className="dark:text-white text-black"
-                          >
-                            Headphones
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className="grid grid-cols-3 gap-4">
-                      <Input placeholder="Brand Name" />
-                      <Input placeholder="Weight" />
-                      <Select>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select Gender" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="men">Men</SelectItem>
-                          <SelectItem value="women">Women</SelectItem>
-                          <SelectItem value="unisex">Unisex</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="flex flex-row  gap-10">
-                        <div className="flex flex-col gap-2">
-                          <span>Size:</span>
-                          <div className="flex gap-2">
-                            <Button>XS</Button>
-                            <Button>S</Button>
-                            <Button>M</Button>
-                            <Button>L</Button>
-                            <Button>XL</Button>
-                          </div>
-                        </div>
-                        <div className="flex flex-col gap-2">
-                          <h4>Colors:</h4>
-                          <div className="flex gap-2">
-                            <Button className="bg-red-500 text-white rounded-full  w-10 h-8"></Button>
-                            <Button className="bg-blue-500 text-white rounded-full w-10 h-8"></Button>
-                            <Button className="bg-green-500 text-white rounded-full w-10 h-8"></Button>
-                            <Button className="bg-yellow-500 text-white rounded-full w-10 h-8"></Button>
-                          </div>
-                        </div>
-
+                    <div className="grid grid-cols-3 gap-4 pt-2">
+                      <div>
+                        <Label>Mahsulot nomi</Label>
+                        <Input placeholder="Mahsulot nomi" />
+                      </div>
+                      <div>
+                        <Label>Mahsulot kategoriyasi</Label>
+                        <Select>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Choose a category" />
+                          </SelectTrigger>
+                          <SelectContent className="dark:text-white text-black">
+                            <SelectItem
+                              value="clothing"
+                              className="dark:text-white text-black"
+                            >
+                              Clothing
+                            </SelectItem>
+                            <SelectItem
+                              value="accessory"
+                              className="dark:text-white text-black"
+                            >
+                              Accessory
+                            </SelectItem>
+                            <SelectItem
+                              value="Footwear"
+                              className="dark:text-white text-black"
+                            >
+                              Footwear
+                            </SelectItem>
+                            <SelectItem
+                              value="Furniture"
+                              className="dark:text-white text-black"
+                            >
+                              Furniture
+                            </SelectItem>
+                            <SelectItem
+                              value="Headphones"
+                              className="dark:text-white text-black"
+                            >
+                              Headphones
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
+                        <Label>Mahsulot subkategoriyasi</Label>
+                        <Select>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Choose a category" />
+                          </SelectTrigger>
+                          <SelectContent className="dark:text-white text-black">
+                            <SelectItem
+                              value="clothing"
+                              className="dark:text-white text-black"
+                            >
+                              Clothing
+                            </SelectItem>
+                            <SelectItem
+                              value="accessory"
+                              className="dark:text-white text-black"
+                            >
+                              Accessory
+                            </SelectItem>
+                            <SelectItem
+                              value="Footwear"
+                              className="dark:text-white text-black"
+                            >
+                              Footwear
+                            </SelectItem>
+                            <SelectItem
+                              value="Furniture"
+                              className="dark:text-white text-black"
+                            >
+                              Furniture
+                            </SelectItem>
+                            <SelectItem
+                              value="Headphones"
+                              className="dark:text-white text-black"
+                            >
+                              Headphones
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
                       </div>
                     </div>
-
-                    <Textarea placeholder="Short description about the product" className="mt-2 h-36" />
-
-                    <div className="grid grid-cols-2 gap-4">
-                      <Input placeholder="#*****" />
-                      <Input placeholder="Quantity" />
+                    <div className="grid grid-cols-2 gap-4 ">
+                      <div>
+                        <Label className="mt-2">Mahsulot narxi</Label>
+                        <Input placeholder="Product Price" type="text" />
+                      </div>
+                      <div>
+                        <Label>Mahsulotning chegirma narxi</Label>
+                        <Input placeholder="Product Stock" />
+                      </div>
                     </div>
-
-                    <h2 className="text-xl font-semibold mt-4">
-                      Pricing Details
-                    </h2>
-
-                    <div className="grid grid-cols-3 gap-4">
-                      <Input placeholder="$ 000" />
-                      <Input placeholder="% 000" />
-                      <Input placeholder="Tax" />
+                    <Textarea />
+                  </div>
+                </div>
+                <div className="dark:bg-zinc-900 p-6 rounded-xl shadow-md text-black">
+                  <div>
+                    <h1 className="dark:text-white text-xl text-black">
+                      Xususiyatlar
+                    </h1>
+                    <div className="space-y-4 dark:text-white text-black">
+                      <div className="grid grid-cols-3 gap-4 pt-3">
+                        <div className="flex flex-col">
+                          <Label className="pb-2">Xususiyat nomi</Label>
+                          <Input placeholder="Xususiyat nomi" />
+                        </div>
+                        <div className="flex flex-col">
+                          <Label className="pb-2">Izohi</Label>
+                          <Input placeholder="Izohi" />
+                        </div>
+                        <Button
+                          variant={"destructive"}
+                          className="text-white w-[100px] mt-5"
+                        >
+                          <Trash2 />
+                        </Button>
+                      </div>
                     </div>
-
-                    <div className="flex gap-4 justify-end pt-3 ">
-                      <Button className="bg-green-600">Reset</Button>
-                      <Button>Save Product</Button>
+                    <div>
+                      {inputs.map((id) => (
+                        <div
+                          key={id}
+                          className="grid grid-cols-3 gap-4 pt-4 dark:text-white text-black"
+                        >
+                          <div className="flex flex-col">
+                            <Label className="pb-2">Xususiyat nomi</Label>
+                            <Input placeholder="Xususiyat nomi" />
+                          </div>
+                          <div className="flex flex-col">
+                            <Label className="pb-2">Izohi</Label>
+                            <Input placeholder="Izohi" />
+                          </div>
+                          <Button
+                            className="text-white w-[100px] mt-5"
+                            variant={"destructive"}
+                          >
+                            <Trash2 />
+                          </Button>
+                        </div>
+                      ))}{" "}
+                      <br />
+                      <Button
+                        onClick={addInputs}
+                        className="bg-green-500 text-white px-4 py-2 rounded-md mb-4"
+                      >
+                        Xususiyatlar
+                      </Button>
                     </div>
                   </div>
+                </div>
+                <div className="dark:bg-zinc-900 p-6 rounded-xl shadow-md text-black">
+                  <div className="flex justify-between">
+                    <h1 className="text-xl">Attribut qo'shish</h1>
+                    <Button>+Add Attribute</Button>
+                  </div>
+                  <div>
+                    <Label>Attribut nomi</Label>
+                    <Input />
+                  </div>
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-3 gap-4 pt-3">
+                      <div>
+                        <Label>Label</Label>
+                        <Input placeholder="Label kiriting:" />
+                      </div>
+                      <div>
+                        <Label>Narxini kiriting</Label>
+                        <Input placeholder="Narxini kiriting:" />
+                      </div>
+                      <div>
+                        <Label>Soni</Label>
+                        <Input type="number " defaultValue={0} required />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <Button className="text-white w-[200px] mt-5">
+                      +Add Label
+                    </Button>
+                  </div>
+                </div>
+                <div className="dark:bg-zinc-900 p-6 rounded-xl shadow-md text-black">
+                  <div className="space-y-4 px-4">
+                    <h2 className="text-lg font-semibold">
+                      Mahsulot rasmlarini yuklang
+                    </h2>
+
+                    <div className="flex justify-between gap-8 ">
+                      {/* Asosiy rasm */}
+                      <div className="flex flex-col items-center space-y-2">
+                        <Label className="text-gray-500">Asosiy rasm</Label>
+                        <label className="w-24 h-24 flex items-center justify-center border rounded-lg cursor-pointer bg-gray-100 hover:bg-gray-200">
+                          {mainImage ? (
+                            <img
+                              src={URL.createObjectURL(mainImage)}
+                              alt="Asosiy rasm"
+                              className="w-full h-full object-cover rounded-lg"
+                            />
+                          ) : (
+                            <span className="text-gray-500 text-sm">
+                              <Camera />
+                            </span>
+                          )}
+                          <Input
+                            type="file"
+                            className="hidden"
+                            onChange={handleMainImageChange}
+                          />
+                        </label>
+                      </div>
+
+                      {/* Qo'shimcha rasmlar */}
+                      <div className="flex flex-col space-y-2 ">
+                        <Label className="text-gray-500">Qo'shimcha rasm</Label>
+                        <div className="flex gap-4">
+                          {[...Array(7)].map((_, index) => (
+                            <label
+                              key={index}
+                              className="w-20 h-20 flex items-center justify-center border rounded-lg cursor-pointer bg-gray-100 hover:bg-gray-200"
+                            >
+                              {additionalImages[index] ? (
+                                <img
+                                  src={URL.createObjectURL(
+                                    additionalImages[index]
+                                  )}
+                                  alt={`Qo'shimcha rasm ${index + 1}`}
+                                  className="w-full h-full object-cover rounded-lg"
+                                />
+                              ) : (
+                                <span className="text-gray-500 text-sm">
+                                  <Camera />
+                                </span>
+                              )}
+                              <Input
+                                type="file"
+                                className="hidden"
+                                onChange={handleAdditionalImagesChange}
+                              />
+                            </label>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex justify-end gap-4">
+                  <Button className="bg-green-500 text-white px-10 py-6 rounded-md mb-4">
+                    Yangilash
+                  </Button>
+                  <Button className="bg-green-500 text-white px-10 py-6 rounded-md mb-4">
+                    Saqlash
+                  </Button>
                 </div>
               </div>
             </div>
