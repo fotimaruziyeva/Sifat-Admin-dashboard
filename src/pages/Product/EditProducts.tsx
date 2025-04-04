@@ -82,7 +82,7 @@ const EditProducts = () => {
           <header className="flex h-16 items-center justify-between px-4 border-b ">
             <div className="flex items-center gap-4">
               <SidebarTrigger className="-ml-1" />
-              <h1 className="text-lg font-bold pl-2 text-black uppercase">
+              <h1 className="text-lg font-bold pl-2 uppercase">
                 Product edit
               </h1>
             </div>
@@ -144,7 +144,7 @@ const EditProducts = () => {
               <div className="relative flex items-center rounded-lg dark:bg-gray-800  bg-white px-2 py-1">
                 <Input
                   placeholder="Search..."
-                  className="border-none bg-transparent text-black placeholder-gray-400"
+                  className="border-none bg-transparent placeholder-gray-400"
                 />
                 <Search className="absolute right-2 text-gray-400" />
               </div>
@@ -157,7 +157,7 @@ const EditProducts = () => {
                   <img src={images} alt="Category" className="w-48 h-48" />
                 </div>
                 <div className="">
-                  <h2 className="text-lg font-semibold mt-4 dark:text-[#aab8c5] text-black">
+                  <h2 className="text-lg font-semibold mt-4 dark:text-[#aab8c5]">
                     Men Black Slim Fit T-shirt (Fashion)
                   </h2>
                   <div className="flex mt-2 flex-col gap-2">
@@ -194,8 +194,8 @@ const EditProducts = () => {
 
               {/* Right Form */}
               <div className="md:col-span-2 space-y-6">
-                <div className="dark:bg-zinc-900 p-6 rounded-xl shadow-md text-black">
-                  <div className="space-y-4 dark:text-white text-black">
+                <div className="dark:bg-zinc-900 p-6 rounded-xl shadow-md">
+                  <div className="space-y-4 dark:text-white">
                     <div className="grid grid-cols-3 gap-4 pt-2">
                       <div>
                         <Label>Mahsulot nomi</Label>
@@ -207,34 +207,34 @@ const EditProducts = () => {
                           <SelectTrigger>
                             <SelectValue placeholder="Choose a category" />
                           </SelectTrigger>
-                          <SelectContent className="dark:text-white text-black">
+                          <SelectContent className="dark:text-white">
                             <SelectItem
                               value="clothing"
-                              className="dark:text-white text-black"
+                              className="dark:text-white"
                             >
                               Clothing
                             </SelectItem>
                             <SelectItem
                               value="accessory"
-                              className="dark:text-white text-black"
+                              className="dark:text-white"
                             >
                               Accessory
                             </SelectItem>
                             <SelectItem
                               value="Footwear"
-                              className="dark:text-white text-black"
+                              className="dark:text-white"
                             >
                               Footwear
                             </SelectItem>
                             <SelectItem
                               value="Furniture"
-                              className="dark:text-white text-black"
+                              className="dark:text-white"
                             >
                               Furniture
                             </SelectItem>
                             <SelectItem
                               value="Headphones"
-                              className="dark:text-white text-black"
+                              className="dark:text-white"
                             >
                               Headphones
                             </SelectItem>
@@ -247,34 +247,34 @@ const EditProducts = () => {
                           <SelectTrigger>
                             <SelectValue placeholder="Choose a category" />
                           </SelectTrigger>
-                          <SelectContent className="dark:text-white text-black">
+                          <SelectContent className="dark:text-white">
                             <SelectItem
                               value="clothing"
-                              className="dark:text-white text-black"
+                              className="dark:text-white"
                             >
                               Clothing
                             </SelectItem>
                             <SelectItem
                               value="accessory"
-                              className="dark:text-white text-black"
+                              className="dark:text-white"
                             >
                               Accessory
                             </SelectItem>
                             <SelectItem
                               value="Footwear"
-                              className="dark:text-white text-black"
+                              className="dark:text-white"
                             >
                               Footwear
                             </SelectItem>
                             <SelectItem
                               value="Furniture"
-                              className="dark:text-white text-black"
+                              className="dark:text-white"
                             >
                               Furniture
                             </SelectItem>
                             <SelectItem
                               value="Headphones"
-                              className="dark:text-white text-black"
+                              className="dark:text-white"
                             >
                               Headphones
                             </SelectItem>
@@ -295,12 +295,12 @@ const EditProducts = () => {
                     <Textarea />
                   </div>
                 </div>
-                <div className="dark:bg-zinc-900 p-6 rounded-xl shadow-md text-black">
+                <div className="dark:bg-zinc-900 p-6 rounded-xl shadow-md">
                   <div>
-                    <h1 className="dark:text-white text-xl text-black">
+                    <h1 className="dark:text-white text-xl">
                       Xususiyatlar
                     </h1>
-                    <div className="space-y-4 dark:text-white text-black">
+                    <div className="space-y-4 dark:text-white">
                       <div className="grid grid-cols-3 gap-4 pt-3">
                         <div className="flex flex-col">
                           <Label className="pb-2">Xususiyat nomi</Label>
@@ -322,7 +322,7 @@ const EditProducts = () => {
                       {inputs.map((id) => (
                         <div
                           key={id}
-                          className="grid grid-cols-3 gap-4 pt-4 dark:text-white text-black"
+                          className="grid grid-cols-3 gap-4 pt-4 dark:text-white"
                         >
                           <div className="flex flex-col">
                             <Label className="pb-2">Xususiyat nomi</Label>
@@ -350,7 +350,7 @@ const EditProducts = () => {
                     </div>
                   </div>
                 </div>
-                <div className="dark:bg-zinc-900 p-6 rounded-xl shadow-md text-black">
+                <div className="dark:bg-zinc-900 p-6 rounded-xl shadow-md">
                   <div className="flex justify-between">
                     <h1 className="text-xl">Attribut qo'shish</h1>
                     <Button>+Add Attribute</Button>
@@ -382,7 +382,7 @@ const EditProducts = () => {
                     </Button>
                   </div>
                 </div>
-                <div className="dark:bg-zinc-900 p-6 rounded-xl shadow-md text-black">
+                <div className="dark:bg-zinc-900 p-6 rounded-xl shadow-md">
                   <div className="space-y-4 px-4">
                     <h2 className="text-lg font-semibold">
                       Mahsulot rasmlarini yuklang

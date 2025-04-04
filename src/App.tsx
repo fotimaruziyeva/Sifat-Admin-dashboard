@@ -17,6 +17,8 @@ import BannersList from './pages/Banners/List'
 import BannersAdd from './pages/Banners/Add'
 import AttributesAdd from './pages/Attributes/Add'
 import AttributesEdit from './pages/Attributes/Edit'
+import CreateSubcategory from './pages/Subcategory/Add'
+import EditSubcategory from './pages/Subcategory/Edit'
 function App() {
 	return (
 		<ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
@@ -39,6 +41,8 @@ function App() {
 				<Route path='/banners/add' element={<BannersAdd/>}></Route>
 				<Route path='/attribbutes/add' element={<AttributesAdd/>}></Route>
 				<Route path='/attribbutes/edit' element={<AttributesEdit/>}></Route>
+				<Route path='/subcategory/create' element={<CreateSubcategory/>}></Route>
+				<Route path='/subcategory/edit' element={<EditSubcategory/>}></Route>
 			</Routes>
 		</ThemeProvider>
 	)

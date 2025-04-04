@@ -111,21 +111,18 @@ const data = {
       ],
     },
     {
-      title: "Attributes",
+      title: "Subcategory",
       url: "#",
       icon: ScrollText,
       items: [
+        
         {
-          title: "List",
-          url: "/attribbutes/list",
+          title: "Create",
+          url: "/subcategory/create",
         },
         {
           title: "Edit",
-          url: "/attribbutes/edit",
-        },
-        {
-          title: "Create",
-          url: "/attribbutes/add",
+          url: "/subcategory/edit",
         },
       ],
     },
