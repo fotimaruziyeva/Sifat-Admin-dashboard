@@ -7,12 +7,12 @@ import {
 import { ModeToggle } from "../../components/mode-toggle";
 import {
   Bell,
-  Heart,
+  // Heart,
   KeyRound,
   LogOutIcon,
-  Mail,
-  Map,
-  Phone,
+  // Mail,
+  // Map,
+  // Phone,
   Search,
   Settings,
   Timer,
@@ -38,7 +38,7 @@ import {
 } from "../../components/ui/dropdown-menu";
 import { Link } from "react-router-dom";
 import { companies } from "@/constants";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 export default function SellersList() {
   return (
