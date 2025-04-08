@@ -38,17 +38,17 @@ import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import axios from "axios";
 import { API_REQUEST } from "@/lib/apiRequest";
 import { toast } from "sonner";
-import { Category } from "@/interfaces";
+// import { Category } from "@/interfaces";
 const EditCategory = () => {
   const accessToken = Cookies.get("access_token"); 
 	const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const navigate=useNavigate()
-  const [category, setCategory] = useState<Category[]>([]);
+  
 
 
     const handleLogOut = () => {
@@ -56,25 +56,25 @@ const EditCategory = () => {
       Cookies.remove("refresh");
       navigate("/login");
     };
-    useEffect(() => {
-      const fetchCategory = async () => {
-        try {
-          const response = await axios.get(API_REQUEST.category, {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-              "Content-Type": "application/json",
-            },
-          });
+    // useEffect(() => {
+    //   const fetchCategory = async () => {
+    //     try {
+    //       const response = await axios.get(API_REQUEST.category, {
+    //         headers: {
+    //           Authorization: `Bearer ${accessToken}`,
+    //           "Content-Type": "application/json",
+    //         },
+    //       });
   
-          setCategory(response.data.data);
-          console.log(response.data.data);
-        } catch (err) {
-          console.log(err);
-        }
-      };
+    //       setCategory(response.data.data);
+    //       console.log(response.data.data);
+    //     } catch (err) {
+    //       console.log(err);
+    //     }
+    //   };
   
-      fetchCategory();
-    }, [accessToken]);
+    //   fetchCategory();
+    // }, [accessToken]);
   const handleSubmit = async () => {
 		
 		const data = {
