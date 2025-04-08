@@ -9,8 +9,8 @@ import { ModeToggle } from "../../components/mode-toggle";
 import {
   Bell,
   Edit2,
-  Eye,
-  Heart,
+  // Eye,
+  // Heart,
   KeyRound,
   LogOutIcon,
   Search,
@@ -37,12 +37,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../../components/ui/dropdown-menu";
-import clothes from "../../assets/clothes.png";
-import image2 from "../../assets/2..png";
-import image3 from "../../assets/3.png";
+// import clothes from "../../assets/clothes.png";
+// import image2 from "../../assets/2..png";
+// import image3 from "../../assets/3.png";
 import image4 from "../../assets/4.png";
 import { Card, CardContent } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
+// import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -52,15 +52,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+// import {
+//   Pagination,
+//   PaginationContent,
+//   PaginationEllipsis,
+//   PaginationItem,
+//   PaginationLink,
+//   PaginationNext,
+//   PaginationPrevious,
+// } from "@/components/ui/pagination";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
@@ -69,12 +69,12 @@ import { API_REQUEST } from "@/lib/apiRequest";
 import { Category } from "@/interfaces";
 import { toast } from "sonner";
 
-const categories = [
-  { name: "Fashion Categories", img: clothes, bgColor: "bg-slate-600" },
-  { name: "Electronics Headphone", img: image2, bgColor: "bg-orange-900" },
-  { name: "Foot Wares", img: image3, bgColor: "bg-yellow-700" },
-  { name: "Eye Ware & Sunglass", img: image4, bgColor: "bg-blue-900" },
-];
+// const categories = [
+//   { name: "Fashion Categories", img: clothes, bgColor: "bg-slate-600" },
+//   { name: "Electronics Headphone", img: image2, bgColor: "bg-orange-900" },
+//   { name: "Foot Wares", img: image3, bgColor: "bg-yellow-700" },
+//   { name: "Eye Ware & Sunglass", img: image4, bgColor: "bg-blue-900" },
+// ];
 export default function Categorys() {
   const [category, setCategory] = useState<Category[]>([]);
   const accessToken = Cookies.get("access_token"); 
@@ -213,23 +213,9 @@ export default function Categorys() {
             </div>
           </div>
         </header>
-        <div className="flex items-center justify-around p-6 ml-2 mr-2  mt-3  dark:bg-zinc-900 bg-white shadow-lg rounded-xl">
-          {categories.map((category, index) => (
-            <Card
-              key={index}
-              className="w-60 dark:bg-zinc-800 shadow-xl dark:text-white text-center p-4 rounded-xl"
-            >
-              <CardContent
-                className={`h-24 flex items-center pt-4 justify-center ${category.bgColor} rounded-lg`}
-              >
-                <img src={category.img} alt="" className="w-20 h-20 " />
-              </CardContent>
-              <p className="mt-4  font-medium">{category.name}</p>
-            </Card>
-          ))}
-        </div>
+      
         <div>
-          <div className="p-6 dark:text-white text-black min-h-screen">
+          <div className="p-6 dark:text-white text-black ">
             <div className="flex justify-between mb-4">
               <h2 className="text-xl font-bold">All Categories List</h2>
               <div className="flex gap-2">
@@ -255,7 +241,7 @@ export default function Categorys() {
                 </Select>
               </div>
             </div>
-            <div className="overflow-x-auto">
+            {/* <div className="overflow-x-auto">
               <table className="w-full border-collapse border">
                 <thead>
                   <tr>
@@ -332,18 +318,62 @@ export default function Categorys() {
                   </PaginationContent>
                 </Pagination>
               </div>
-            </div>
+            </div> */}
           </div>
+          <div className="flex flex-wrap  gap-4 p-6 ml-2 mr-2  mt-3  dark:bg-zinc-900 bg-white shadow-lg rounded-xl">
+          {category.map((category, ) => (
+            
+            <Card
+              key={category.id}
+              className="w-96 dark:bg-zinc-800 shadow-xl dark:text-white text-center p-4 rounded-xl"
+            >
+              <div className="flex justify-end gap-2">
+             <Link to={`/edit`}>
+             <Button variant={"secondary"} >
+                          <Edit2 />
+                        </Button>
+             </Link>
+                        <Button
+                          variant={"destructive"}
+                          onClick={() => handleDelete(category.id)}
+                        >
+                          <Trash2 />
+                        </Button>
+              </div>
+              <CardContent
+                className={`h-36 flex items-center pt-4 justify-center rounded-lg`}
+              >
+                <img src={image4} alt="" className="w-20 h-20 " />
+              </CardContent>
+             <div className="flex items-center justify-between">
+             <p className="  font-medium">{category.name}</p>
+              <Select>
+                  <SelectTrigger className="w-[150px]">
+                    <SelectValue placeholder="Subcategory" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectItem value="download" className="flex">
+                        Subcategory
+                      </SelectItem>
+                      {
+                      category.subcategories.map((category) =>(
+
+                        <SelectItem value="export">{category.name}</SelectItem>
+                      ))
+                      }
+                     
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+                
+             </div>
+                    
+            </Card>
+          ))}
         </div>
-        <div>
-          <footer className="flex items-center justify-center gap-3">
-            <h4 className="text-center text-orange-500 font-mono">
-              2025 © Larkon. Crafted by{" "}
-            </h4>
-            <Heart className="text-red-600 " size={16} />
-            <span className="text-green-600 font-mono">Techzaa</span>
-          </footer>
         </div>
+    
       </SidebarInset>
     </SidebarProvider>
   );

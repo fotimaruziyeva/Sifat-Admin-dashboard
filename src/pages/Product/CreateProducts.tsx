@@ -51,7 +51,7 @@ import axios from "axios";
 import { API_REQUEST } from "@/lib/apiRequest";
 import { toast } from "sonner";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Textarea } from "@/components/ui/textarea";
 
 
@@ -183,7 +183,9 @@ const CreateProducts = () => {
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>
-                    <User2 /> Profile
+                   <Link to="/profile" className="flex items-center gap-2"> 
+                   <User2 /> Profile
+                   </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <KeyRound /> Password

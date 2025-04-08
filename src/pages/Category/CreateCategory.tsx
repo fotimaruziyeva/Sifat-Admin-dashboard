@@ -185,17 +185,30 @@ const CreateCategory = () => {
                 <div className="dark:bg-zinc-900 p-6 rounded-xl shadow-lg text-black">
 
                  
-                    <div>
+                <div className="grid grid-cols-2 gap-4 pt-3">
+                 <div>
                       <Label className="block pb-3 text-gray-700" >
                       Category Title
                       </Label>
                       <Input
                         type="text"
                         placeholder="Enter Title"
-                        className="w-full p-6 border  dark:text-white  rounded-md focus:outline-none focus:ring focus:border-blue-300  text-white"
+                        className="w-full p-6 border  dark:text-white  rounded-md focus:outline-none focus:ring focus:border-blue-300  text-black"
                         value={name}
                         onChange={(e) => setName(e.target.value)}/>
                   </div>
+                  <div>
+                      <Label className="block pb-3 text-gray-700" >
+                      Subcategory Title
+                      </Label>
+                      <Input
+                        type="text"
+                        placeholder="Enter Title"
+                        className="w-full p-6 border  dark:text-white  rounded-md focus:outline-none focus:ring focus:border-blue-300  text-black"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}/>
+                  </div>
+                 </div>
               <div>
                 <Label className="block pb-3 mt-5 text-gray-700">
                   Category description

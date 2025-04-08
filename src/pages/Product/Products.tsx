@@ -169,9 +169,9 @@ export default function Products() {
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                  <Link to="/profile">
-                    <User2 /> Profile
-                  </Link>
+                <Link to="/profile" className="flex items-center gap-2"> 
+                   <User2 /> Profile
+                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <KeyRound /> Password
@@ -190,12 +190,12 @@ export default function Products() {
             </div>
           </div>
         </header>
-        <div className="dark:bg-zinc-900  bg-white dark:text-white text-black min-h-screen p-6">
+        <div className="dark:bg-zinc-900  bg-white dark:text-white text-black p-6">
           <div className="flex justify-between items-center mb-4">
             <div className="relative">
               <Input
                 placeholder="Search ..."
-                className="pl-10 dark:bg-zinc-800 bg-white shadow-lg"
+                className="pl-10 dark:bg-zinc-800 bg-white "
               />
               <Search
                 className="absolute left-3 top-2 text-gray-400"
@@ -292,21 +292,24 @@ export default function Products() {
                 >
                   <CardContent className="p-4">
                     <h3 className="text-lg font-bold">{product.name}</h3>
-                    <p className="text-yellow-400">★ {product.view_count}</p>
-                    <p className="text-gray-300 line-through">
-                      ${product.price}
+                    <p className="text-black ">
+                      <span className="font-bold">Price: </span>
+                      <span>{product.price}</span>
                     </p>
-                    {product.dis_count_price && (
+                    <p className="">
+                      <span className="font-bold">Discount Price: </span>
+                     <span className="text-gray-300 line-through"> ${product.price}</span>
+                    </p>
+                    {/* {product.dis_count_price && (
                       <p className="text-green-400 text-xl">
                         ${product.dis_count_price}
                       </p>
-                    )}
-                    <div className="flex flex-row gap-2">
-                      <Button className="w-full mt-2">Add To Cart</Button>
-                      <Button className="w-full mt-2 bg-blue-600">
+                    )} */}
+                    <div className="flex flex-row gap-2 justify-end">
+                      <Button className=" mt-2 bg-blue-600 hover:bg-blue-700">
                         <Edit2 />
                       </Button>
-                      <Button className="w-full mt-2" variant={"destructive"} onClick={() => handleDelete(product.id)} >
+                      <Button className=" mt-2" variant={"destructive"} onClick={() => handleDelete(product.id)} >
                         <Trash2 />
                       </Button>
                     </div>

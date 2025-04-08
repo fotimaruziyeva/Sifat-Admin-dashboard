@@ -15,7 +15,6 @@ import {
   Phone,
   Search,
   Settings,
-  Star,
   Timer,
   User2,
 } from "lucide-react";
@@ -40,6 +39,7 @@ import {
 import { Link } from "react-router-dom";
 import { companies } from "@/constants";
 import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
 export default function SellersList() {
   return (
     <SidebarProvider className=" w-screen dark:text-white text-black dark:bg-black bg-white shadow-lg">
@@ -91,7 +91,7 @@ export default function SellersList() {
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                  <Link to="/profile">
+                  <Link to="/profile" className="flex items-center gap-2">
                     <User2 /> Profile
                   </Link>
                 </DropdownMenuItem>
@@ -115,14 +115,11 @@ export default function SellersList() {
           </div>
         </header>
         <div>
-            <div className="w-full px-10 mt-10">
-                <div className="flex justify-between">
-                <h1 className="text-2xl font-medium ">Sellers List </h1>
-                <Link to={'/'}>
-                <Button className="dark:text-white text-black">+Add Sellers</Button>
-                </Link>
-                </div>
+          <div className="w-full px-10 mt-10">
+            <div className="flex justify-between">
+              <h1 className="text-2xl font-medium ">Template List </h1>
             </div>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 p-6">
             {companies.map((company, index) => (
               <div
@@ -135,48 +132,13 @@ export default function SellersList() {
                   className="w-full h-20 object-contain mb-4"
                 />
                 <div className="flex justify-between pt-6">
-                <h2 className="text-xl font-bold dark:text-white">{company.name}</h2> 
-                <div className="flex justify-end gap-2">
-                <span className="flex gap-2"><Star className="text-yellow-600"/>{company.rating}</span>
-                <span>{company.reviews}</span>
+                  <h2 className="text-xl font-bold dark:text-white">
+                    {company.name}
+                  </h2>
+                  <span>
+                    <Switch />
+                  </span>
                 </div>
-                </div>
-               <div className="flex flex-col pt-6">
-                <div className="flex gap-2">
-                    <Map/>
-                    <span>{company.address}</span>
-                </div>
-                <div className="flex gap-2">
-                    <Mail/>
-                    <span>
-                        {company.email}
-                    </span>
-                </div>
-                <div className="flex gap-2">
-                    <Phone/>
-                    <span>{company.phone}</span>
-                </div>
-
-               </div>
-               <div className="pt-6 flex items-center  gap-10">
-                <div className="flex flex-col">
-                    <em>{company.stock}</em>
-                    <span>Item Stock</span>
-                </div>
-                <div className="flex flex-col">
-                    <em>{company.sells}</em>
-                    <span>Sellsk</span>
-                </div>
-                <div className="flex flex-col">
-                    <em>{company.clients}</em>
-                    <span>Happy Client</span>
-                </div>
-               </div>
-               <div className="flex gap-2">
-                <Button className="mt-4  text-white px-4 py-2 rounded-lg w-4/5">   View Profile</Button>
-                <Button variant={'destructive'} className="mt-4  text-white px-4 py-2 rounded-lg"><Heart  size={24}/></Button>
-                
-               </div>
               </div>
             ))}
           </div>

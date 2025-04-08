@@ -142,13 +142,15 @@ export default function Navbar() {
                   className="h-8 w-8 rounded-full cursor-pointer"
                 />
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
+              <DropdownMenuContent >
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <Link to="/profile">
+                <DropdownMenuItem >
+              
+                 <Link to="/profile" className="flex items-center gap-2">
                     <User2 /> Profile
                   </Link>
+               
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <KeyRound /> Password

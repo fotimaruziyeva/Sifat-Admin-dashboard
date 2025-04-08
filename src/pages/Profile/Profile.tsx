@@ -10,6 +10,7 @@ import image from "../../assets/image.png";
 import profile from "../../assets/Man2profile.jpeg"
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   return (
@@ -63,7 +64,9 @@ const Profile = () => {
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                  <User2 /> Profile
+                <Link to="/profile" className="flex items-center gap-2"> 
+                   <User2 /> Profile
+                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <KeyRound /> Password

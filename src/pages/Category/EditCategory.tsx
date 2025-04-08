@@ -36,8 +36,67 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { API_REQUEST } from "@/lib/apiRequest";
+import { toast } from "sonner";
+import { Category } from "@/interfaces";
 const EditCategory = () => {
+  const accessToken = Cookies.get("access_token"); 
+	const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
+  const navigate=useNavigate()
+  const [category, setCategory] = useState<Category[]>([]);
+
+
+    const handleLogOut = () => {
+      Cookies.remove("access_token");
+      Cookies.remove("refresh");
+      navigate("/login");
+    };
+    useEffect(() => {
+      const fetchCategory = async () => {
+        try {
+          const response = await axios.get(API_REQUEST.category, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+              "Content-Type": "application/json",
+            },
+          });
+  
+          setCategory(response.data.data);
+          console.log(response.data.data);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+  
+      fetchCategory();
+    }, [accessToken]);
+  const handleSubmit = async () => {
+		
+		const data = {
+   name,
+   description
+    }
+
+		await axios
+			.post(API_REQUEST.category, data, {
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			})
+			.then(() => {
+				toast.success("Muvaffaqiyatli qo'shildi", {
+					position: 'top-center',
+					richColors: true,
+				})
+    
+			})
+      .catch(err=>console.log(err))
+	}
   return (
     <div>
       <SidebarProvider className="w-screen">
@@ -46,7 +105,7 @@ const EditCategory = () => {
           <header className="flex h-16 items-center justify-between px-4 border-b ">
             <div className="flex items-center gap-4">
               <SidebarTrigger className="-ml-1" />
-              <h1 className="text-lg font-bold pl-2 text-black uppercase">
+              <h1 className="text-lg font-bold pl-2 dark:text-white text-black uppercase">
                 Create Category
               </h1>
             </div>
@@ -98,7 +157,7 @@ const EditCategory = () => {
                   <DropdownMenuItem>
                     <KeyRound /> Password
                   </DropdownMenuItem>
-                  <DropdownMenuItem>
+                  <DropdownMenuItem onClick={handleLogOut}>
                     <LogOutIcon /> Logout
                   </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -117,40 +176,21 @@ const EditCategory = () => {
           <div className="p-6  min-h-screen">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 ">
               {/* Left Card */}
-              <div className="dark:bg-zinc-900  bg-white h-2/4 p-6 rounded-xl shadow-lg ">
+              <div className="dark:bg-zinc-900  bg-white h-3/4 p-6 rounded-xl shadow-lg ">
                 <img src={images} alt="Category" className="w-1/2 h-1/2" />
                 <div className="">
                   <h2 className="text-lg font-semibold mt-4 dark:text-[#aab8c5] text-black">
-                    Fashion Men, Women & Kid's
+                  {name}
                   </h2>
-               <div className=" mt-3 flex flex-row gap-8">
-               <p className="dark:text-[#aab8c5] text-black text-sm flex flex-col">
-                    <span>Created By:</span> 
-                    <span className="text-blue-600">Seller</span>
-                  </p>
-                  <p className="dark:text-[#aab8c5]   text-black text-sm flex flex-col">
-                    <span>Stock:</span> <span className="font-bold">46233</span>
-                  </p>
-                  <p className="dark:text-[#aab8c5] text-black text-sm flex flex-col">
-                    <span>ID:</span> <span className="font-bold">FS16276</span>
-                  </p>
-               </div>
+                <p>{description}</p>
                 </div>
-                <hr  className="mt-4"/>
-                <div className="mt-4 flex gap-2">
-                  <Button className="px-10 py-5 border rounded-lg dark:text-black text-white">
-                    Create Category
-                  </Button>
-                  <Button className="px-10 py-5 bg-orange-500 dark:text-black text-white rounded-lg">
-                    Cancel
-                  </Button>
-                </div>
+               
               </div>
 
-              {/* Right Form */}
+              
               <div className="md:col-span-2 space-y-6">
                 <div className="dark:bg-zinc-900 bg-white p-6 rounded-xl shadow-lg">
-                  <h3 className="font-semibold text-lg dark:text-[#aab8c5] tnext-black">
+                  <h3 className="font-semibold text-lg dark:text-[#aab8c5] text-black">
                     Add Thumbnail Photo
                   </h3>
                   <div className="mt-4 border-dashed border-2 border-gray-300 rounded-lg py-12 flex flex-col items-center justify-center text-gray-500">
@@ -161,59 +201,43 @@ const EditCategory = () => {
                   </div>
                 </div>
                 <div className="dark:bg-zinc-900 p-6 rounded-xl shadow-lg text-black">
-                  <h3 className="font-semibold text-lg dark:dark:text-[#aab8c5] text-black ">
-                    General Information
-                  </h3>
-                  <hr  className="my-4 border-dashed border-2 border-gray-300 "/>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <Label className="block pb-3 text-gray-700">
-                        Category Title
+
+                 <div className="grid grid-cols-2 gap-4 pt-3">
+                 <div>
+                      <Label className="block pb-3 text-gray-700" >
+                      Category Title
                       </Label>
                       <Input
                         type="text"
-                        placeholder=" Fashion Men, Women & Kid's"
-                        className="w-full p-6 border  dark:text-white text-black rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                      />
-                    </div>
-                    <div >
-                      <Label className="block dark:text-gray-700 text-black pb-3 ">Created By</Label>
-                      <select className="w-full p-4 dark:bg-zinc-900  border rounded-md focus:outline-none focus:ring focus:border-blue-300">
-                        <option className="dark:text-white text-black">Select Creator</option>
-                        <option className="dark:text-white text-black">Admin</option>
-                        <option className="dark:text-white text-black">Other</option>
-                        <option className="dark:text-white text-black">Seller</option>
-                      </select>
-                    </div>
-                    <div>
-                      <Label className="block pb-3 text-gray-700 ">Stock</Label>
-                      <Input
-                        type="number"
-                        placeholder="46233"
-                        className="w-full p-6    dark:text-white text-black border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                      />
-                    </div>
-                    <div>
-                      <Label className="block pb-3 text-gray-700">Tag ID</Label>
+                        placeholder="Enter Title"
+                        className="w-full p-6 border  dark:text-white  rounded-md focus:outline-none focus:ring focus:border-blue-300  text-black"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}/>
+                  </div>
+                  <div>
+                      <Label className="block pb-3 text-gray-700" >
+                      Subcategory Title
+                      </Label>
                       <Input
                         type="text"
-                        placeholder="FS16276"
-                        className="w-full p-6  dark:text-white text-black border rounded-md focus:outline-none focus:ring focus:border-blue-300"
-                      />
-                    </div>
+                        placeholder="Enter Title"
+                        className="w-full p-6 border  dark:text-white  rounded-md focus:outline-none focus:ring focus:border-blue-300  text-black"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}/>
                   </div>
-                  <div className="mt-4">
-                    <Label className="block pb-3 text-gray-700">Description</Label>
-                    <Textarea
-                      placeholder="Aurora Fashion has once again captivated fashion enthusiasts with its latest collection, seamlessly blending elegance with comfort in a range of exquisite designs."
-                      className="w-full p-2  dark:text-white text-black border rounded-md h-32 focus:outline-none focus:ring focus:border-blue-300"
-                    ></Textarea>
-                  </div>
+                 </div>
+                   
+              <div>
+                <Label className="block pb-3 mt-5 text-gray-700">
+                  Category description
+                </Label>
+                <Textarea  value={description} onChange={(e) => setDescription(e.target.value)} className=" text-white"/>
+              </div>
                 </div>
                 <div className=" dark:bg-zinc-900 bg-white p-6 rounded-xl shadow-lg ">
                   <div className="flex justify-end gap-3">
-                    <Button>Save Changes</Button>
-                    <Button className="bg-orange-500 px-10 py-4">Cancel</Button>
+                    <Button onClick={handleSubmit} className=" text-white">Save Changes</Button>
+                  
                   </div>
                 </div>
               </div>

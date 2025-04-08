@@ -97,7 +97,7 @@ const [date, setDate] = React.useState<Date>()
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                  <Link to="/profile">
+                  <Link to="/profile" className="flex items-center gap-2">
                     <User2 /> Profile
                   </Link>
                 </DropdownMenuItem>
